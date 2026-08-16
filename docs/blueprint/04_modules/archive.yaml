@@ -19,8 +19,8 @@ version: 1.0.0
   []
 产物:
   []
-降级方案: "render text records and image alt text"
+降级方案: "render complete text records"
 验收条件:
-  - "藏品相对路径可替换"
+  - "藏品在没有图片时仍可完整呈现"
   - "来源与策展说明分栏"
   - "剧透幕布可关闭"

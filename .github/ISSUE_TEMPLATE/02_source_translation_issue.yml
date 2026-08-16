@@ -1,0 +1,45 @@
+name: 来源或翻译问题
+description: 报告来源冲突、三语专名差异、缺失译名或本地化问题。
+title: "docs(i18n): "
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: 条目或专名
+      placeholder: 中文名 / English name / 日本語名
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 问题类型
+      options:
+        - 来源冲突
+        - 中文名称
+        - 英文名称
+        - 日文名称
+        - 缺失译名
+        - 创作层本地化
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 问题说明
+      description: 请保留各语言原文，并说明差异或缺失情况。
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 来源依据
+      description: 请分别列出支持各说法的来源链接；不要静默选择其中一种。
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 提交确认
+      options:
+        - label: 我没有在本 issue 中上传第三方原图。
+          required: true

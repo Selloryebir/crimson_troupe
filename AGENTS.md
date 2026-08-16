@@ -36,9 +36,13 @@ Preface: All development should be conducted in Simplified Chinese.
    - use `feat` for new features and `fix` for bug fixes; mark breaking changes with `!` or an uppercase `BREAKING CHANGE:` footer
    - never bypass the repository's `commit-msg` hook with `--no-verify`
 
-7. Private Asset Boundary
-   - `../assets/` is a human-maintained private store outside this repository
-   - agents and automation must not access, enumerate, hash, copy, move, restore, publish, or build from `../assets/`
-   - ignored PNG paths under `docs/background/02_crimson_troupe/04_collectibles/assets/collectibles/` are human-only local mounts and must never be force-added
-   - agents may maintain asset filenames, relative-path metadata, provenance text, placeholders, and validators without accessing the private files
-   - never record a machine-specific absolute private-asset path in tracked files
+7. Third-Party Asset Boundary
+   - this repository does not maintain third-party originals, private image filenames, relative paths, or local mount points
+   - agents and automation must not access, enumerate, hash, copy, move, restore, publish, or build from out-of-repository private backups
+   - agents may maintain public source URLs, provenance text, project-owned assets, and assets with the necessary permissions
+   - never add third-party originals to issues, pull requests, fixtures, builds, or releases
+
+8. Repository Verification
+   - install development dependencies from `requirements-dev.txt`
+   - before handoff, run `python3 scripts/validate_docs.py` and `python3 -m unittest discover -s tests -p 'test_*.py'`
+   - the tracked collectibles catalog is text-only; never restore third-party image indexes or embeds

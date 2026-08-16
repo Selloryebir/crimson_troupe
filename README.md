@@ -8,7 +8,7 @@
 
 | 路径 | 职责 |
 |---|---|
-| `docs/background/` | 世界观事实、官方或可回溯专名、事实边界与私有图像索引 |
+| `docs/background/` | 世界观事实、官方或可回溯专名、事实边界与公开来源索引 |
 | `docs/content/` | 基于事实的创作应用、工作译和内容本地化 |
 | `docs/blueprint/` | 网站架构、功能、模块、旅程、契约和技术设计 |
 | `docs/planning/` | 来源登记、审核事项、覆盖缺口和推进计划 |
@@ -24,19 +24,23 @@
 ./scripts/install-git-hooks.sh
 ```
 
-运行现有测试：
+安装固定的开发依赖并运行完整校验：
 
 ```bash
-python3 -m unittest tests/test_validate_commit_message.py
+python3 -m pip install -r requirements-dev.txt
+python3 scripts/validate_docs.py
+python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
-所有新提交必须遵循 Conventional Commits 1.0.0。具体规则、分支协作要求和私有素材边界见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+所有新提交必须遵循 Conventional Commits 1.0.0。具体规则、分支协作要求和第三方素材边界见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
-## 私有素材
+## 第三方素材
 
-第三方原图不随仓库分发。人工维护的私有素材根目录位于仓库同级的 `../assets/`；仓库内 `docs/background/02_crimson_troupe/04_collectibles/assets/collectibles/` 只作为人工本地挂载位置并被 Git 忽略。
+仓库不存放或分发第三方原图，也不维护私有图片文件名、相对路径或本地挂载点。背景事实通过公开来源网址和文字说明回溯；未来网站只使用项目原创或已取得必要授权的视觉资产。
 
-agents、自动化脚本和网站构建不得访问、复制、恢复或发布 `../assets/` 中的内容。仓库只保存文件名、相对路径、来源和文字描述。
+## 安全问题
+
+安全漏洞不得通过公开 issue 披露，请按照 [`SECURITY.md`](SECURITY.md) 使用 GitHub Private Vulnerability Reporting。文档事实纠错、来源或翻译问题和功能建议使用对应的 issue 表单。
 
 ## 权利声明
 
