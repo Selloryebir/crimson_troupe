@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "猩红剧团网站体验模块",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "挂载点",
+    "路由",
+    "依赖模块",
+    "信息输入",
+    "降级方案",
+    "验收条件"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "version": {
+      "type": "string"
+    },
+    "挂载点": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "路由": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "依赖模块": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "信息输入": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^docs/(background|content|blueprint)/"
+      }
+    },
+    "本地状态": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "产物": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "降级方案": {
+      "type": "string"
+    },
+    "验收条件": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

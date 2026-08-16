@@ -1,0 +1,26 @@
+id: join_us
+version: 1.0.0
+挂载点:
+  - troupe.after-people
+  - global.footer
+路由:
+  - /join
+  - /join/stage-name
+  - /join/ending
+依赖模块:
+  - troupe_information
+信息输入:
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+本地状态:
+  - fictionalRole
+  - stageName
+  - auditionChoices
+  - ending
+产物:
+  []
+降级方案: "show a static fictional audition notice"
+验收条件:
+  - "不收现实简历或联系方式"
+  - "可随时退出并获得闭幕结局"
+  - "输入只在本地保存"

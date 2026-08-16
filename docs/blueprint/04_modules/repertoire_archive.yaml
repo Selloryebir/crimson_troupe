@@ -1,0 +1,26 @@
+id: repertoire_archive
+version: 1.0.0
+挂载点:
+  - repertoire.list
+  - repertoire.detail
+  - home.featured
+路由:
+  - /schedule
+  - /schedule/:performanceId
+  - /repertoire
+  - /repertoire/:slug
+  - /past-performances
+依赖模块:
+  []
+信息输入:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+本地状态:
+  []
+产物:
+  []
+降级方案: "show text list without flip animation or images"
+验收条件:
+  - "中英日差异并列"
+  - "普通面与猩红面可独立阅读"
+  - "翻页不依赖 hover"

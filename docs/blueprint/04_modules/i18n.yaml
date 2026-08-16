@@ -1,0 +1,24 @@
+id: i18n
+version: 1.0.0
+挂载点:
+  - global.header
+  - content.translation-note
+路由:
+  - /compare/:ref
+依赖模块:
+  []
+信息输入:
+  - docs/blueprint/05_i18n/01_locales.yaml
+  - docs/content/03_localization/04_国家名方案.csv
+  - docs/content/03_localization/05_语言名方案.csv
+本地状态:
+  - deliveryLocale
+  - diegeticLocale
+  - showEvidence
+产物:
+  []
+降级方案: "use default delivery locale and retain official proper names"
+验收条件:
+  - "交付语言与世界内语域分离"
+  - "颜色不作为唯一证据提示"
+  - "低可信候选不进入 SEO"

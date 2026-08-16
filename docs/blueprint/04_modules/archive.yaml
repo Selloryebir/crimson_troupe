@@ -1,0 +1,26 @@
+id: archive
+version: 1.0.0
+挂载点:
+  - global.after-content
+  - troupe.secondary
+路由:
+  - /archive
+  - /archive/collectibles/:id
+  - /archive/intelligence
+  - /endings
+  - /versions/:ref
+依赖模块:
+  []
+信息输入:
+  - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+本地状态:
+  []
+产物:
+  []
+降级方案: "render text records and image alt text"
+验收条件:
+  - "藏品相对路径可替换"
+  - "来源与策展说明分栏"
+  - "剧透幕布可关闭"

@@ -1,0 +1,9 @@
+flowchart LR
+  Troupe[剧团介绍] --> Departments[台前·乐团·舞台·巡演]
+  Departments --> Person[人物/工种详情]
+  Troupe --> Join[一页试镜]
+  Join --> Role[岗位建议]
+  Role --> Name[舞台名工房]
+  Name --> Return[第二次访问报名表]
+  Return --> Decide{接受/拒绝/解约}
+  Decide --> Home[舞台档案或欢迎回家]

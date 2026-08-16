@@ -1,0 +1,10 @@
+flowchart LR
+  CTA{开售状态} -->|可预约| Seat[席位分区]
+  CTA -->|未开售| Alert[本地提醒]
+  CTA -->|候补/退回票| Wait[候补说明]
+  CTA -->|免票| Free[入场说明·不进付款流程]
+  CTA -->|外部主办| External[责任边界/离站提示]
+  Seat --> Basket[票篮]
+  Basket --> Conflict{城市/时间冲突?}
+  Conflict -->|否| Confirm[确认虚构预约]
+  Conflict -->|是| Changes[变更/改签中心]

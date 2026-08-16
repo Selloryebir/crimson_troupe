@@ -1,0 +1,11 @@
+flowchart LR
+  Page[当前页面] --> Delivery[交付语言]
+  Delivery --> CN[简中]
+  Delivery --> EN[English]
+  Delivery --> JP[日本語]
+  Page --> Diegetic[泰拉语域]
+  Diegetic --> Skin[短标签·日期·节目册皮肤]
+  Skin --> Page
+  Page --> Evidence[并排对照]
+  Evidence --> Status[官方/工作译/推拟/待审]
+  Status --> Page
