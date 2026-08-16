@@ -1,0 +1,22 @@
+id: timeline_archive
+version: 1.0.0
+挂载点:
+  - troupe.history
+  - archive.timeline
+路由:
+  - /troupe/history
+  - /archive/timeline
+依赖模块:
+  - troupe_information
+信息输入:
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+  - docs/background/01_world/02_国家实体.csv
+本地状态:
+  - selectedSnapshot
+  - spoilerScope
+产物: []
+降级方案: "按日期显示纯文本事件表"
+验收条件:
+  - "泰拉年份与服务器发布日期分离"
+  - "同年事件不自动显示为因果"
+  - "旧团、搜救、红丝绒和新酒神为不同快照"

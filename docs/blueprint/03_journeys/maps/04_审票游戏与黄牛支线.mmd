@@ -1,0 +1,12 @@
+flowchart LR
+  Basket[票篮] --> Choice{参加三幕审票?}
+  Choice -->|跳过| Ticket[完成预约]
+  Choice -->|参加| Act1[剧目与城市]
+  Act1 --> Act2[校准票戳]
+  Act2 --> Act3[识别异常条款]
+  Act3 --> Understudy{候补演员支线?}
+  Understudy -->|拒绝| Ticket
+  Understudy -->|进入| Branch[议价·揭穿·鉴票·转赠]
+  Branch --> Ending[支线落幕]
+  Ending --> Ticket
+  Act3 -.失败只改叙事.-> Ticket

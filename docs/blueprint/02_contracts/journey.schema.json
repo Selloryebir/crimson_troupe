@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Crimson Troupe Journey",
+  "type": "object",
+  "required": [
+    "id",
+    "名称",
+    "用户目标",
+    "入口",
+    "路由",
+    "模块",
+    "主流程",
+    "恢复",
+    "开发批次",
+    "人工审核"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^JRN-[0-9]{3}$"
+    },
+    "名称": {
+      "type": "string"
+    },
+    "用户目标": {
+      "type": "string"
+    },
+    "入口": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "路由": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "模块": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "信息输入": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^docs/(background|content|blueprint)/"
+      }
+    },
+    "主流程": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "恢复": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "产出": {
+      "type": "string"
+    },
+    "开发批次": {
+      "enum": [
+        "M0",
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    "人工审核": {
+      "enum": [
+        "待审",
+        "通过",
+        "修改后通过",
+        "不实现"
+      ]
+    }
+  }
+}

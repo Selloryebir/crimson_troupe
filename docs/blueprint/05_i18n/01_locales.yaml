@@ -1,0 +1,142 @@
+版本: 5.0.0
+说明: "泰拉语域用于票面、专名和短句；不是官方完整语言包。"
+交付语言:
+  - tag: zh-CN
+    自称: 简体中文
+    证据: 简中客户端
+  - tag: en
+    自称: English
+    证据: 国际服客户端
+  - tag: ja
+    自称: 日本語
+    证据: 日服客户端
+泰拉语域:
+  - tag: x-ak-aegir
+    名称: 阿戈尔语
+    自称: Ægirian
+    备选: Lingua Aegiriana
+    依据: 官方英文词形＋语言学扩展
+  - tag: x-ak-bolivar
+    名称: 玻利瓦尔语
+    自称: Bolivariano
+    备选: Iberiano bolivariano
+    依据: 语言学推拟·中
+  - tag: x-ak-columbia
+    名称: 哥伦比亚语
+    自称: Columbian
+    备选: Victorian (Columbian)
+    依据: 官方英文词形
+  - tag: x-ak-durin
+    名称: 杜林语
+    自称: Durinera
+    备选: Durish
+    依据: 语言学推拟·中
+  - tag: x-ak-gaul
+    名称: 高卢语
+    自称: Gaulois
+    备选: langue gauloise
+    依据: 语言学推拟·高
+  - tag: x-ak-higashi
+    名称: 东国语
+    自称: 極東語
+    备选: 東国語
+    依据: 官方日文衍生
+  - tag: x-ak-iberia-es
+    名称: 伊比利亚语（西语型）
+    自称: Iberiano
+    备选: idioma iberiano
+    依据: 语言学推拟·高
+  - tag: x-ak-iberia-pt
+    名称: 伊比利亚语（葡语型）
+    自称: Iberiano ocidental
+    备选: Iberiano (variante ocidental)
+    依据: 编辑方案
+  - tag: x-ak-kazdel
+    名称: 卡兹戴尔语
+    自称: Kazdelian
+    备选: קזדלית / كازدلية
+    依据: 官方英文＋语言学推拟·中
+  - tag: x-ak-kazimierz
+    名称: 卡西米尔语
+    自称: Kazimierski
+    备选: język kazimierski / kazimierszczyzna
+    依据: 语言学推拟·高
+  - tag: x-ak-kjerag
+    名称: 谢拉格语
+    自称: Kjeragisk
+    备选: Kjeragisch
+    依据: 语言学推拟·中
+  - tag: x-ak-laterano
+    名称: 拉特兰语
+    自称: Lateranensis
+    备选: Laterano / Laterana
+    依据: 语言学推拟·中
+  - tag: x-ak-leithanien
+    名称: 莱塔尼亚语
+    自称: Leithanisch
+    备选: Leithanische Sprache
+    依据: 语言学推拟·高
+  - tag: x-ak-lungmen
+    名称: 龙门话
+    自称: 龍門話
+    备选: 炎文（龍門話） / 龍門語
+    依据: 语言学推拟·高
+  - tag: x-ak-minos
+    名称: 米诺斯语
+    自称: Μινωικά
+    备选: η μινωική γλώσσα
+    依据: 语言学推拟·高
+  - tag: x-ak-nightzmora
+    名称: 梦魇语
+    自称: Найтзморан хэл
+    备选: Найтзморан
+    依据: 语言学推拟·中
+  - tag: x-ak-rim-billiton
+    名称: 雷姆必拓区域语体
+    自称: Victorian (Rim Billiton)
+    备选: Rim Victorian
+    依据: 编辑方案
+  - tag: x-ak-sami
+    名称: 萨米诸语言
+    自称: Sámegiella
+    备选: davvisámegiella
+    依据: 编辑方案＋现实自称参照
+  - tag: x-ak-sargon
+    名称: 萨尔贡诸语言
+    自称: لغات سارغون
+    备选: زبان‌های سارگون
+    语域候选:
+      - id: ar
+        标签: لغات سارغون
+      - id: fa
+        标签: زبان‌های سارگون
+    依据: 编辑方案；必须继续按地区下钻
+  - tag: x-ak-siesta
+    名称: 汐斯塔克里奥尔语
+    自称: Kreyòl Siesta
+    备选: Criollo siestano / Crioulo siestano
+    依据: 语言学推拟·中
+  - tag: x-ak-siracusa
+    名称: 叙拉古语
+    自称: Siracusano
+    备选: lingua siracusana
+    依据: 官方活动词形＋语言学推拟·高
+  - tag: x-ak-tara
+    名称: 塔拉语
+    自称: Tengae
+    依据: 世界内直接词形
+  - tag: x-ak-ursus
+    名称: 乌萨斯语
+    自称: Урсусский
+    备选: урсусский язык
+    依据: 语言学推拟·高
+  - tag: x-ak-victoria
+    名称: 维多利亚语
+    自称: Victorian
+    备选: Victorian English
+    依据: 官方英文词形
+  - tag: x-ak-yan
+    名称: 炎语
+    自称: 炎文
+    备选: 炎语 / 大炎官话
+    依据: 语言学推拟·中

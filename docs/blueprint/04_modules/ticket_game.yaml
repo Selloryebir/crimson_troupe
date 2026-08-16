@@ -1,0 +1,25 @@
+id: ticket_game
+version: 1.0.0
+挂载点:
+  - basket.before-confirmation
+路由:
+  - /basket/audition
+  - /basket/understudy
+依赖模块:
+  - ticket_basket
+信息输入:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/content/01_world/04_巡演地点候选.csv
+本地状态:
+  - actOneChoice
+  - stampPlacement
+  - clauseChoice
+  - endingSeed
+产物:
+  []
+降级方案: "skip directly to complete fictional reservation"
+验收条件:
+  - "失败不阻止出票"
+  - "无计时模式"
+  - "拖拽有按钮替代"
+  - "结果只改变虚构票样和结局"

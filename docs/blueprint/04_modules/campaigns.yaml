@@ -1,0 +1,34 @@
+id: campaigns
+version: 1.0.0
+挂载点:
+  - home.notice
+  - archive.special-exhibition
+  - global.after-content
+路由:
+  - /season/crimson-tour
+  - /season/wrankwood
+  - /season/castle-archive
+  - /intermission/:gameId
+  - /rest
+依赖模块:
+  - repertoire_archive
+  - archive
+信息输入:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+  - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
+  - docs/content/01_world/04_巡演地点候选.csv
+本地状态:
+  - seasonProgress
+  - intermissionAchievements
+  - randomEventsEnabled
+产物:
+  - "活动票戳"
+  - "虚构通告单"
+降级方案: "显示活动章节、任务说明和已解锁内容列表；所有小游戏可跳过"
+验收条件:
+  - "活动归档后仍可重演"
+  - "不使用现实倒计时或错过惩罚"
+  - "随机彩蛋可关闭且不遮挡主要操作"
+  - "无 JavaScript 时可阅读全部活动正文"

@@ -1,0 +1,50 @@
+name: Commit convention
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate new commit messages
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_COMMITS_JSON: ${{ toJSON(github.event.commits) }}
+          PUSH_DELETED: ${{ github.event.deleted }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            python3 scripts/validate_commit_message.py --range "$PR_BASE_SHA..$PR_HEAD_SHA"
+            exit
+          fi
+
+          if [ "$PUSH_DELETED" = "true" ]; then
+            echo "分支删除不产生待校验提交。"
+            exit
+          fi
+
+          PUSH_COMMIT_SHAS="$(
+            python3 -c 'import json, os; print(" ".join(commit["id"] for commit in json.loads(os.environ.get("PUSH_COMMITS_JSON") or "[]")))'
+          )"
+
+          if [ -z "$PUSH_COMMIT_SHAS" ]; then
+            echo "本次推送未引入新提交。"
+            exit
+          fi
+
+          for commit in $PUSH_COMMIT_SHAS; do
+            python3 scripts/validate_commit_message.py --commit "$commit"
+          done

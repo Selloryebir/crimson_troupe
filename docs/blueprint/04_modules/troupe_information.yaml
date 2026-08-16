@@ -1,0 +1,23 @@
+id: troupe_information
+version: 1.0.0
+挂载点:
+  - troupe.primary
+  - home.after-hero
+路由:
+  - /troupe
+  - /troupe/people/:slug
+依赖模块:
+  []
+信息输入:
+  - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+本地状态:
+  []
+产物:
+  []
+降级方案: "render available sections; mark missing sections as 档案整理中"
+验收条件:
+  - "人物年代不被压成同一时期"
+  - "稳定原文随时可见"
+  - "移动端章节目录可键盘操作"

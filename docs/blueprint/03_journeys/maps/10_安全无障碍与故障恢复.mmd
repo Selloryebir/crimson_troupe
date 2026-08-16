@@ -1,0 +1,11 @@
+flowchart TD
+  Any[任何页面/模块] --> Close[闭幕按钮]
+  Close --> Stable[稳定演出版]
+  Any --> Access[动效·声音·高对比·大字·无计时]
+  Any --> Spoiler[剧透与服务器范围]
+  Any --> Failure{能力或模块失败?}
+  Failure -->|低带宽/无JS| Text[SSR 文本·列表·纯文本票]
+  Failure -->|存储失败| Session[当前会话＋即时下载]
+  Failure -->|输入文件或定位字段缺失| Block[构建阻断/故障报告]
+  Text --> Task[继续完成核心任务]
+  Stable --> Task
