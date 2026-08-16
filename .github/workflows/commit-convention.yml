@@ -23,7 +23,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          PUSH_COMMIT_SHAS: ${{ join(github.event.commits.*.id, ' ') }}
+          PUSH_COMMITS_JSON: ${{ toJSON(github.event.commits) }}
           PUSH_DELETED: ${{ github.event.deleted }}
         run: |
           if [ "$EVENT_NAME" = "pull_request" ]; then
@@ -35,6 +35,10 @@ jobs:
             echo "分支删除不产生待校验提交。"
             exit
           fi
+
+          PUSH_COMMIT_SHAS="$(
+            python3 -c 'import json, os; print(" ".join(commit["id"] for commit in json.loads(os.environ.get("PUSH_COMMITS_JSON") or "[]")))'
+          )"
 
           if [ -z "$PUSH_COMMIT_SHAS" ]; then
             echo "本次推送未引入新提交。"
