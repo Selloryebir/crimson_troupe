@@ -4,15 +4,15 @@
 
 1. 修改前阅读 `docs/README.md` 与 `docs/01_文档组织规范.md`，确认信息层级和唯一维护位置。
 2. 保留事实、来源、审查状态和多语种缺失标记，不以编辑推测覆盖原记录。
-3. 提交前运行与变更相关的校验和测试，并确认没有私有素材进入暂存区。
-4. 提交信息遵循下述 Conventional Commits 规范。
+3. 首次运行校验前执行 `python3 -m pip install -r requirements-dev.txt` 安装固定的开发依赖。
+4. 提交前运行文档校验和单元测试，并确认没有未经授权的第三方原图进入暂存区。
+5. 提交信息遵循下述 Conventional Commits 规范。
 
-## 私有素材边界
+## 第三方素材边界
 
-- 仓库同级的 `../assets/` 是人工维护的私有存储，不属于仓库内容。
-- `docs/background/02_crimson_troupe/04_collectibles/assets/collectibles/` 只用于人工本地挂载，目录下 PNG 被 Git 忽略。
-- agents、自动化脚本和网站构建不得访问、复制、恢复、发布或强制提交这些文件。
-- 贡献只可修改仓库内的文件名、相对路径、来源、文字描述、原创占位内容和校验规则。
+- 仓库不维护第三方原图、私有图片文件名、相对路径或本地挂载点。
+- agents、自动化脚本和网站构建不得访问仓库外的人工私有备份，也不得从中复制、恢复或发布内容。
+- 贡献只可维护公开来源网址、文字说明、原创资产和已经取得必要授权的素材。
 - 第三方原图不得包含在 issue、pull request、构建产物、测试夹具或发布包中。
 
 ## Commit 规范
@@ -80,10 +80,11 @@ fix(parser):
 
 仓库管理员应将 GitHub 状态检查 `Commit convention / validate-commits` 设为受保护分支的必需检查，从而阻止不合规提交被合并。分支保护属于 GitHub 仓库设置，不能仅通过仓库文件自动启用。
 
-可手动运行测试：
+可手动运行完整校验：
 
 ```bash
-python3 -m unittest tests/test_validate_commit_message.py
+python3 scripts/validate_docs.py
+python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
 现有历史提交不会被追溯改写，规范从本规则加入后的新提交开始执行。

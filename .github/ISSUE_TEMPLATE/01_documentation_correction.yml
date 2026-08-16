@@ -1,0 +1,43 @@
+name: 文档事实纠错
+description: 报告背景事实、时间线、人物、地点或专名中的错误。
+title: "docs: "
+body:
+  - type: markdown
+    attributes:
+      value: 感谢协助改进信息库。请提供可回溯依据，不要上传第三方原图。
+  - type: input
+    id: location
+    attributes:
+      label: 信息位置
+      description: 请填写文件路径、条目名称或行号。
+      placeholder: docs/background/...
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 当前内容
+      description: 请准确描述当前记录及问题。
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: 建议修正
+      description: 请说明建议内容；存在冲突时列出不同说法，不要自行覆盖。
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 来源依据
+      description: 请提供来源名称、网址和必要的版本或访问日期。
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 提交确认
+      options:
+        - label: 我没有在本 issue 中上传第三方原图。
+          required: true

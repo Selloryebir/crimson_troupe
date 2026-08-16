@@ -1,0 +1,39 @@
+name: 功能提案
+description: 提议网站功能、内容呈现、用户旅程或开发流程改进。
+title: "feat: "
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 用户目标
+      description: 请说明目标用户要完成什么，而不只是描述界面元素。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 提案说明
+      description: 请说明入口、主要流程、结果和失败恢复方式。
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: 信息输入与依赖
+      description: 列出需要读取的 background、content 或 blueprint 文件，以及依赖模块。
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: 降级与无障碍
+      description: 说明低带宽、无 JavaScript、键盘操作或减少动效时如何使用。
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 提交确认
+      options:
+        - label: 本提案不会要求 agents、自动化或网站构建访问仓库外的人工私有备份。
+          required: true
