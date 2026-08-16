@@ -1,0 +1,25 @@
+id: souvenir_ticket
+version: 1.0.0
+挂载点:
+  - basket.after-confirmation
+  - profile.ticket-wallet
+路由:
+  - /ticket/:localId
+  - /wallet
+依赖模块:
+  - ticket_basket
+信息输入:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/content/01_world/04_巡演地点候选.csv
+  - docs/background/01_world/08_货币与准货币.csv
+本地状态:
+  []
+产物:
+  - PNG
+  - "print CSS A4"
+  - "print CSS Letter"
+降级方案: "download a text-only ticket card"
+验收条件:
+  - "标注非现实入场凭证且无价值"
+  - "不含真实条码或商户"
+  - "黑白和大字版可用"

@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+
+# 仅供人工本地挂载的第三方原图；不得提交或进入构建产物。
+/docs/background/02_crimson_troupe/04_collectibles/assets/collectibles/*.png

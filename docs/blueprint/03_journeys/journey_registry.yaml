@@ -1,0 +1,875 @@
+版本: 1.0.0
+说明: "每条旅程定义用户目标、点击路径、依赖和恢复。功能目录以旅程 ID 建立开发路径；所有条目等待人工审核。"
+旅程:
+  -
+    id: JRN-001
+    名称: "搜索落地与任务型首页"
+    用户目标: "确认这是剧团官网并在一屏内找到演出、剧团、到访或票篮。"
+    入口:
+      - "搜索结果"
+      - "外部深链接"
+      - "站内 Logo"
+    路由:
+      - /
+    模块:
+      - core
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+    主流程:
+      - "读取今夜/近期演出与状态"
+      - "选择演出日历、剧团、到访或档案"
+      - "保留语言、剧透和稳定模式工具"
+      - "继续到对应任务页"
+    恢复:
+      - "低带宽时显示静态节目单"
+      - "异常叙事可一键闭幕"
+    产出: "明确的下一步任务"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-002
+    名称: "演出日历、筛选与赛季浏览"
+    用户目标: "按日期、城市、剧目与可访问形式找到合适场次。"
+    入口:
+      - "首页今夜节目"
+      - "主导航·演出日历"
+      - "历史演出入口"
+    路由:
+      - /schedule
+    模块:
+      - core
+      - repertoire_archive
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+    主流程:
+      - "选择列表或日历"
+      - "设置日期/城市/剧目/状态筛选"
+      - "查看结果数与场次摘要"
+      - "打开演出详情"
+    恢复:
+      - "无结果时建议放宽一个条件"
+      - "清除全部筛选一步可达"
+    产出: "选中的 performanceId"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-003
+    名称: "演出详情与同剧其他日期"
+    用户目标: "理解演出内容、时间、地点、阵容、时长与票务状态后做决定。"
+    入口:
+      - "日历场次卡"
+      - "剧目页"
+      - "分享链接"
+    路由:
+      - /schedule/:performanceId
+      - /repertoire/:slug
+    模块:
+      - core
+      - repertoire_archive
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+    主流程:
+      - "读取场次关键信息"
+      - "浏览节目/阵容/时长/幕间"
+      - "比较同剧其他日期"
+      - "加入日历、打印或选择场次"
+    恢复:
+      - "待定时长显示状态而非空值"
+      - "返回日历保留筛选与滚动位置"
+    产出: "场次选择或可复现链接"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-004
+    名称: "剧团、人物与制作部门"
+    用户目标: "从公开机构介绍进入按年代区分的人物和工种档案。"
+    入口:
+      - "主导航·剧团"
+      - "演出详情演职员"
+      - "首页剧团简介"
+    路由:
+      - /troupe
+      - /troupe/people/:slug
+    模块:
+      - troupe_information
+    信息输入:
+      - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
+      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+      - docs/content/04_performance/02_剧团岗位推演.csv
+    主流程:
+      - "阅读公开组织简介"
+      - "按台前/乐团/舞台/巡演分组"
+      - "打开人物或部门"
+      - "主动展开年代与证据层"
+    恢复:
+      - "缺某时期资料显示档案整理中"
+      - "回到演出详情时保持场次"
+    产出: "人物/部门记录位置"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-005
+    名称: "巡演到访与首次观演"
+    用户目标: "理解如何抵达移动城市、进入场馆并完成一晚观演。"
+    入口:
+      - "主导航·巡演与到访"
+      - "场次详情场馆链接"
+      - "首次观演提示"
+    路由:
+      - /visit
+      - /visit/:venueId
+    模块:
+      - core
+    信息输入:
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/01_world/06_泰拉纪年.csv
+    主流程:
+      - "确认城市与抵达窗口"
+      - "查看入口/候场/设施/技艺限制"
+      - "阅读首次观演与迟到说明"
+      - "返回场次或进入票篮"
+    恢复:
+      - "天灾或移动改线转到变更中心"
+      - "路线图不可用时显示等价步骤列表"
+    产出: "到访计划（本地、虚构）"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-006
+    名称: "站内搜索、无结果与 404 找回"
+    用户目标: "用中英日名称或世界内别名找到内容，并在错误路径中安全返回。"
+    入口:
+      - "全局搜索"
+      - "失效链接"
+      - "手输 URL"
+    路由:
+      - /search
+      - "/*"
+    模块:
+      - core
+      - repertoire_archive
+    信息输入:
+      - docs/background/03_terminology/90_reference_lexicon/01_泰拉词库.csv
+      - docs/background/03_terminology/01_核心专名.csv
+    主流程:
+      - "输入专名或筛选类型"
+      - "显示正规结果与证据层"
+      - "无结果时给出拼写/语种建议"
+      - "404 走廊仍提供首页和搜索"
+    恢复:
+      - "谜题层不替代正常建议"
+      - "真正返回 HTTP 404"
+    产出: "目标内容或明确返回路径"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-007
+    名称: "首次启幕与偏好设定"
+    用户目标: "在不被片头阻挡的前提下选择声音、动效、剧透和稳定模式。"
+    入口:
+      - "首次访问首页"
+    路由:
+      - /
+    模块:
+      - core
+      - narrative_layer
+    信息输入:
+      []
+    主流程:
+      - "先显示可用首页"
+      - "滚动或点击启幕"
+      - "可选开声与剧透范围"
+      - "保存本地偏好"
+    恢复:
+      - "跳过片头立即可用"
+      - "降低动效时直接切换静态状态"
+    产出: "本地体验偏好"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-101
+    名称: "选场、席位与票篮"
+    用户目标: "把纯虚构场次与席位加入票篮并确认观演路线。"
+    入口:
+      - "演出详情 CTA"
+      - "日历场次卡"
+      - "持续票篮"
+    路由:
+      - /basket
+    模块:
+      - repertoire_archive
+      - ticket_basket
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/01_world/08_货币与准货币.csv
+    主流程:
+      - "选择场次"
+      - "选择席位分区与世界内币种显示"
+      - "加入票篮并查看路线冲突"
+      - "继续预约或返回浏览"
+    恢复:
+      - "可撤销移除和一键清空"
+      - "本地存储不可用时保持当前会话"
+    产出: "本地 ticketBasket"
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-102
+    名称: "开售、候补、外部主办与免票状态"
+    用户目标: "理解当前可以采取的合法站内动作。"
+    入口:
+      - "场次卡状态"
+      - "演出详情 CTA"
+      - "票务说明"
+    路由:
+      - /schedule/:performanceId
+      - /ticket-info
+    模块:
+      - repertoire_archive
+      - ticket_basket
+    信息输入:
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/01_world/08_货币与准货币.csv
+    主流程:
+      - "读取开售状态"
+      - "显示对应主操作与原因"
+      - "候补/退回票/免票/外部主办走各自说明"
+      - "回到场次或票篮"
+    恢复:
+      - "未知状态禁用预约并给出说明"
+      - "不用虚假倒计时推动选择"
+    产出: "票务意图或提醒（本地）"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-103
+    名称: "三幕审票与候补席点名"
+    用户目标: "自愿完成可跳过的票务小游戏，并获得不阻断功能的结果。"
+    入口:
+      - "票篮确认前"
+      - "活动重演"
+    路由:
+      - /basket/audition
+    模块:
+      - ticket_basket
+      - ticket_game
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+    主流程:
+      - "匹配剧目与城市"
+      - "校准原创票戳"
+      - "识别异常条款"
+      - "可选候补席点名"
+      - "生成 endingSeed"
+    恢复:
+      - "跳过直接完成预约"
+      - "失败只改变票面和叙事"
+    产出: "endingSeed 与票戳参数"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-104
+    名称: "候补演员黄牛支线"
+    用户目标: "识别并处理虚构票务讽刺，同时保留清晰退出。"
+    入口:
+      - "余票有限状态"
+      - "三幕审票后"
+      - "档案重演"
+    路由:
+      - /basket/understudy
+    模块:
+      - ticket_basket
+      - ticket_game
+    信息输入:
+      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+    主流程:
+      - "遇到候补席代理"
+      - "议价/揭穿/拒绝/请鉴票"
+      - "查看后果与触发条件"
+      - "返回正常预约或收集结局"
+    恢复:
+      - "不设置强迫倒计时"
+      - "拒绝后正常功能不受损"
+    产出: "黄牛支线结局"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-105
+    名称: "场次变更、改签与取消"
+    用户目标: "在城市改线、演员替补或闭幕时保留、改签或取消预约。"
+    入口:
+      - "场次变更通知"
+      - "票篮冲突"
+      - "票根钱包"
+    路由:
+      - /changes/:performanceId
+    模块:
+      - ticket_basket
+    信息输入:
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+    主流程:
+      - "阅读变更原因与时间"
+      - "比较替代场次"
+      - "选择保留/改签/取消"
+      - "生成本地变更记录"
+    恢复:
+      - "始终提供直接取消"
+      - "没有替代场次时返回演出日历"
+    产出: "更新后的本地预约"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-106
+    名称: "纪念票、打印与票根钱包"
+    用户目标: "获得不可兑付的纪念票并管理本地收藏。"
+    入口:
+      - "预约完成"
+      - "结局卡"
+      - "票根钱包"
+    路由:
+      - /ticket/:localId
+      - /wallet
+    模块:
+      - ticket_basket
+      - souvenir_ticket
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/01_world/08_货币与准货币.csv
+    主流程:
+      - "预览公开/档案票面"
+      - "选择 A4/Letter/手机卡"
+      - "下载 PNG 或打印"
+      - "进入钱包筛选/导出/删除"
+    恢复:
+      - "图形失败时下载纯文本票"
+      - "存储失败时先即时下载"
+    产出: "虚构纪念票文件与本地记录"
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-201
+    名称: "剧目、活页双面与节目洞察"
+    用户目标: "从公开节目说明进入三语标题、猩红规则、音乐与幕后资料。"
+    入口:
+      - "主导航·剧目"
+      - "演出详情洞察"
+      - "首页节目册"
+    路由:
+      - /repertoire
+      - /repertoire/:slug
+    模块:
+      - repertoire_archive
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/07_留声典藏.csv
+      - docs/background/03_terminology/01_核心专名.csv
+    主流程:
+      - "浏览剧目列表"
+      - "阅读普通节目单面"
+      - "主动翻到猩红面"
+      - "查看三服差异与相关资料"
+    恢复:
+      - "无翻面动画仍能读两面"
+      - "剧透范围不足时保留摘要"
+    产出: "剧目记录位置与阅读位置"
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-202
+    名称: "猩红珍藏与长生者宝盒"
+    用户目标: "按剧务、剧情、人物和演出用途浏览藏品。"
+    入口:
+      - "主导航·档案馆"
+      - "票根解锁"
+      - "剧目相关资料"
+    路由:
+      - /archive
+      - /archive/collectibles/:id
+    模块:
+      - archive
+    信息输入:
+      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+    主流程:
+      - "筛选藏品分类"
+      - "打开物件与图像"
+      - "查看原文/来源/策展说明"
+      - "以组合打开盒中舞台"
+    恢复:
+      - "图片缺失时完整显示文字与替代文本"
+      - "未解锁内容仍显示必要摘要"
+    产出: "藏品记录位置与本地收藏状态"
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-203
+    名称: "过往演出、赛季档案与时间线"
+    用户目标: "按时间、母题、人物和地点理解 41 场演出及同期事件。"
+    入口:
+      - "历史演出入口"
+      - "剧团历史"
+      - "档案馆"
+    路由:
+      - /past-performances
+      - /archive/timeline
+      - /troupe/history
+    模块:
+      - repertoire_archive
+      - archive
+      - timeline_archive
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+      - docs/background/01_world/06_泰拉纪年.csv
+    主流程:
+      - "选择赛季或时间快照"
+      - "筛选演出与事件"
+      - "对照泰拉年份/服务器日期"
+      - "打开具体演出或人物"
+    恢复:
+      - "同年事件不自动画因果线"
+      - "缺某服词形显示待核"
+    产出: "可复现时间线快照"
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-204
+    名称: "幻觉组合、报告与恢复"
+    用户目标: "探索幻觉规则后随时恢复稳定页面。"
+    入口:
+      - "探索档案"
+      - "幻觉调色盘"
+      - "活动链"
+    路由:
+      - /archive/hallucinations
+    模块:
+      - archive
+      - hallucination_layer
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/03_幻觉报告册.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+    主流程:
+      - "选择两个症状卡"
+      - "预览组合效果与文本规则"
+      - "确认或撤销"
+      - "记录报告册条目"
+    恢复:
+      - "温暖的火恢复默认视觉"
+      - "闭幕按钮停止所有污染"
+    产出: "本地 fusedSymptom"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-205
+    名称: "红丝绒片场与新旧酒神"
+    用户目标: "从关卡和片场工种理解红丝绒的制作体系与时代变化。"
+    入口:
+      - "档案馆特别展"
+      - "剧团历史"
+      - "蓝卡坞活动"
+    路由:
+      - /archive/wrankwood
+      - /archive/wrankwood/production
+    模块:
+      - archive
+      - red_velvet_studio
+    信息输入:
+      - docs/background/02_crimson_troupe/05_red_velvet/02_红丝绒关卡.csv
+      - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+    主流程:
+      - "选择关卡/镜头版本"
+      - "查看演职员与工种"
+      - "比较摄影机内外差异"
+      - "进入新旧酒神时间说明"
+    恢复:
+      - "电影人与旧团成员分栏"
+      - "低端设备使用静态分镜"
+    产出: "镜头版本或虚构通告单"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-206
+    名称: "四结局、版本冲突与重演"
+    用户目标: "比较并保留多个叙事版本，而不把任何一个误写为唯一正史。"
+    入口:
+      - "结局剧匣"
+      - "改稿注释"
+      - "档案重演"
+    路由:
+      - /endings
+      - /versions/:ref
+    模块:
+      - archive
+      - narrative_layer
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+    主流程:
+      - "选择结局或内容记录"
+      - "比较公开稿/演员稿/调查稿/创作稿"
+      - "选择个人首页引用"
+      - "随时查看与重演其他版本"
+    恢复:
+      - "原始来源不可覆盖"
+      - "欢迎回家恢复稳定公开层"
+    产出: "本地版本偏好"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-301
+    名称: "交付语言切换"
+    用户目标: "在简中、English、日本語之间切换完整可审阅页面。"
+    入口:
+      - "全局语言选择器"
+      - "搜索结果语言提示"
+    路由:
+      - "所有路由"
+    模块:
+      - i18n
+    信息输入:
+      - docs/blueprint/05_i18n/01_locales.yaml
+      - docs/background/03_terminology/01_核心专名.csv
+    主流程:
+      - "打开语言选择器"
+      - "选择交付语言"
+      - "保留当前路由与段落"
+      - "显示缺失字段与回退依据"
+    恢复:
+      - "缺译文回退官方专名＋默认正文"
+      - "不自动倒译缺失官名"
+    产出: deliveryLocale
+    开发批次: M1
+    人工审核: "待审"
+  -
+    id: JRN-302
+    名称: "泰拉语域与城市节目册皮肤"
+    用户目标: "在不替换可审阅正文的前提下体验地区语言标签、日期和节目单语体。"
+    入口:
+      - "语言选择器·泰拉语域"
+      - "场次城市提示"
+      - "舞台名工房"
+    路由:
+      - "所有内容路由"
+    模块:
+      - i18n
+    信息输入:
+      - docs/blueprint/05_i18n/01_locales.yaml
+      - docs/content/03_localization/04_国家名方案.csv
+      - docs/content/03_localization/05_语言名方案.csv
+    主流程:
+      - "选择地区语域"
+      - "预览自称、日期、短字段和字体回退"
+      - "确认应用到装饰字段"
+      - "随时切回标准交付语言"
+    恢复:
+      - "低可信候选显示待审且不进 SEO"
+      - "RTL 或字库失败时回退标准布局"
+    产出: diegeticLocale
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-303
+    名称: "三服对照、证据与唱词并排"
+    用户目标: "比较中英日官方字段、工作译和语言学推拟。"
+    入口:
+      - "剧目页语言工具"
+      - "档案证据标签"
+      - "搜索结果"
+    路由:
+      - /compare/:ref
+    模块:
+      - i18n
+    信息输入:
+      - docs/background/03_terminology/01_核心专名.csv
+      - docs/content/03_localization/03_语言槽位.csv
+    主流程:
+      - "选择记录与语言列"
+      - "按 segment 对齐"
+      - "查看来源/证据/审查状态"
+      - "复制某一正式字段或导出审阅"
+    恢复:
+      - "颜色之外重复文字状态"
+      - "不把语义差异自动归为错误"
+    产出: "审阅选择或差异记录"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-401
+    名称: "一页试镜"
+    用户目标: "完成纯虚构岗位问答并获得舞台岗位建议。"
+    入口:
+      - "主导航·加入我们"
+      - "剧团人物页"
+    路由:
+      - /join
+    模块:
+      - troupe_information
+      - join_us
+    信息输入:
+      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+      - docs/content/04_performance/02_剧团岗位推演.csv
+    主流程:
+      - "选择台前/文本/舞台/视觉/声音/巡演/收藏"
+      - "完成一项短试题"
+      - "查看岗位建议和事实依据"
+      - "生成本地舞台档案"
+    恢复:
+      - "可跳题与退出"
+      - "不收简历、联系方式或真实姓名"
+    产出: "虚构岗位建议"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-402
+    名称: "舞台名工房与改写报名表"
+    用户目标: "从预置词根生成舞台名，并决定是否接受第二次访问的叙事变化。"
+    入口:
+      - "一页试镜结果"
+      - /join/stage-name
+      - "第二次访问加入我们"
+    路由:
+      - /join/stage-name
+      - /join/ending
+    模块:
+      - join_us
+      - i18n
+    信息输入:
+      - docs/blueprint/05_i18n/01_locales.yaml
+      - docs/background/03_terminology/01_核心专名.csv
+    主流程:
+      - "选择意象/技艺/地区语域"
+      - "生成三个候选并看读音/依据"
+      - "保存舞台名"
+      - "第二次访问选择接受、拒绝或解约"
+    恢复:
+      - "拒绝与闭幕同等显著"
+      - "输入和结果可全部清除"
+    产出: "本地 stageName 与加入结局"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-501
+    名称: "稳定演出版、闭幕与欢迎回家"
+    用户目标: "任何时刻停止声音、动效、污染和惊悚层并返回完整可用网站。"
+    入口:
+      - "全局闭幕按钮"
+      - "稳定演出版设置"
+      - "异常内容提示"
+    路由:
+      - "所有路由"
+    模块:
+      - core
+    信息输入:
+      []
+    主流程:
+      - "点击闭幕或启用稳定版"
+      - "立即停止副作用"
+      - "回到当前内容的稳定呈现或首页"
+      - "可保留票根、可另行清除进度"
+    恢复:
+      - "按钮始终可见可键盘操作"
+      - "退出不制造损失或羞辱"
+    产出: stableMode=true
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-502
+    名称: "低带宽、无 JavaScript 与存储失败"
+    用户目标: "在能力受限时仍完成浏览、选择和下载。"
+    入口:
+      - "自动能力检测"
+      - "用户主动切换"
+      - "模块加载失败"
+    路由:
+      - "所有核心路由"
+    模块:
+      - core
+    信息输入:
+      []
+    主流程:
+      - "先呈现 SSR 文本与链接"
+      - "建议轻量模式"
+      - "用列表替代日历/地图/Canvas"
+      - "当前会话完成后即时下载"
+    恢复:
+      - "存储失败不丢当前表单"
+      - "网络恢复后可选择增强而非强制刷新"
+    产出: "等价核心任务结果"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-503
+    名称: "动效、声音与可访问演出偏好"
+    用户目标: "按视觉、听觉、输入和认知需要调整站点与场次筛选。"
+    入口:
+      - "全局体验设置"
+      - "首次启幕"
+      - "演出筛选"
+    路由:
+      - /access
+      - "所有路由"
+    模块:
+      - core
+      - i18n
+    信息输入:
+      []
+    主流程:
+      - "选择降低动效/静音/高对比/大字/无计时"
+      - "筛选相应场次标签"
+      - "预览当前页面"
+      - "保存或恢复默认"
+    恢复:
+      - "系统 prefers 设置为默认基线"
+      - "设置入口不隐藏在彩蛋中"
+    产出: accessibilityProfile
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-504
+    名称: "剧透范围与服务器进度"
+    用户目标: "按 IS2、红丝绒和深层宇宙论决定可见内容。"
+    入口:
+      - "首次深层内容前"
+      - "全局内容设置"
+      - "分享链接"
+    路由:
+      - "所有内容路由"
+    模块:
+      - core
+      - archive
+      - i18n
+    信息输入:
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+    主流程:
+      - "选择服务器/内容范围"
+      - "预览将隐藏的层级"
+      - "应用并继续阅读"
+      - "随时调整"
+    恢复:
+      - "隐藏内容仍说明类别与来源"
+      - "链接不强制扩大剧透范围"
+    产出: spoilerScope
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-505
+    名称: "模块、内容与输入资料故障恢复"
+    用户目标: "当模块、图片、输入数据或本地状态失败时继续完成主任务。"
+    入口:
+      - "运行时错误"
+      - "构建时缺输入"
+      - "失效资料路径或自然定位字段"
+    路由:
+      - "所有路由"
+    模块:
+      - core
+    信息输入:
+      []
+    主流程:
+      - "隔离失败模块"
+      - "显示文本降级和故障范围"
+      - "提供重试/返回/闭幕"
+      - "记录非敏感诊断信息"
+    恢复:
+      - "核心导航和内容始终可读"
+      - "输入文件或自然定位字段缺失时在构建阶段阻断发布"
+    产出: "可继续任务或清晰故障报告"
+    开发批次: M0
+    人工审核: "待审"
+  -
+    id: JRN-601
+    名称: "猩红巡演季"
+    用户目标: "按周/幕探索新场次、票戳、档案与结局，错过后仍可重演。"
+    入口:
+      - "首页季节横幅"
+      - "档案活动页"
+    路由:
+      - /season/crimson-tour
+    模块:
+      - campaigns
+      - repertoire_archive
+      - ticket_basket
+      - archive
+    信息输入:
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+      - docs/content/01_world/04_巡演地点候选.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
+    主流程:
+      - "查看本幕内容"
+      - "选择巡演节点"
+      - "完成演出或档案任务"
+      - "获得票戳并进入下一幕"
+    恢复:
+      - "活动结束切 archive_mode"
+      - "不使用现实倒计时制造焦虑"
+    产出: "本地赛季进度"
+    开发批次: M2
+    人工审核: "待审"
+  -
+    id: JRN-602
+    名称: "蓝卡坞片场周与古堡档案夜"
+    用户目标: "完成片场工种或文件链任务，生成可比较的版本。"
+    入口:
+      - "档案特别展"
+      - "活动日历"
+    路由:
+      - /season/wrankwood
+      - /season/castle-archive
+    模块:
+      - campaigns
+      - archive
+      - red_velvet_studio
+      - timeline_archive
+    信息输入:
+      - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+    主流程:
+      - "选择片场工种或档案主题"
+      - "完成镜头/文件排序"
+      - "比较伪史与来源链"
+      - "保存虚构通告单或时间线"
+    恢复:
+      - "不调用摄像头或上传影像"
+      - "可一键显示正确顺序"
+    产出: "版本化活动纪念物"
+    开发批次: M3
+    人工审核: "待审"
+  -
+    id: JRN-603
+    名称: "幕间小游戏、彩蛋与温暖的火"
+    用户目标: "在不阻断主任务的前提下体验剧务小游戏与休息彩蛋。"
+    入口:
+      - "活动页"
+      - "档案重演"
+      - "长时间探索提示"
+    路由:
+      - /intermission/:gameId
+      - /rest
+    模块:
+      - campaigns
+    信息输入:
+      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/03_幻觉报告册.csv
+    主流程:
+      - "选择点名/调度/雾机/丝线/校音"
+      - "查看规则与无计时选项"
+      - "完成或跳过"
+      - "获得评价/票戳或进入温暖的火"
+    恢复:
+      - "所有小游戏有文本替代"
+      - "鸭爵等随机事件可关闭且不遮挡 CTA"
+    产出: "可选成就与休息状态"
+    开发批次: M2
+    人工审核: "待审"

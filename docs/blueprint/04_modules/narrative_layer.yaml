@@ -1,0 +1,28 @@
+id: narrative_layer
+version: 1.0.0
+挂载点:
+  - home.after-hero
+  - troupe.after-history
+  - repertoire.detail
+  - global.after-content
+路由:
+  []
+依赖模块:
+  []
+信息输入:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
+本地状态:
+  - narrativeLayer
+  - endingFlags
+  - contentOverlays
+  - stableMode
+产物:
+  []
+降级方案: "关闭双生翻面、改稿、污染和环境动效；显示不可变原文与普通导航"
+验收条件:
+  - "原始内容不可被覆盖或写回"
+  - "闭幕和稳定演出版立即清理全部副作用"
+  - "沉浸层不阻断演出、到访、票篮或搜索任务"
+  - "降低动效时仍可理解版本差异"

@@ -1,0 +1,9 @@
+flowchart LR
+  Detail[演出详情] --> Facts[日期·场馆·阵容·节目·时长·幕间]
+  Facts --> Other[同剧其他日期]
+  Facts --> Insights[节目洞察/幕后档案]
+  Facts --> Venue[场馆与移动城市]
+  Venue --> Arrival[抵达窗口·入口·设施·技艺限制]
+  Arrival --> First[首次观演/迟到/内容提示]
+  Detail --> Calendar[加入日历·打印·稳定链接]
+  Detail --> CTA{开售状态}
