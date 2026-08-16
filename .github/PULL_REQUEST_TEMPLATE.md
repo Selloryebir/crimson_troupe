@@ -17,4 +17,4 @@
 - [ ] 已运行 `python3 scripts/validate_docs.py`
 - [ ] 已运行 `python3 -m unittest discover -s tests -p 'test_*.py'`
 - [ ] 未提交未经授权的第三方原图
-- [ ] 提交消息符合 Conventional Commits 1.0.0
+- [ ] PR 标题与提交消息符合 Conventional Commits 1.0.0

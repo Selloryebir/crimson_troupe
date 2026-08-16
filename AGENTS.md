@@ -33,6 +33,7 @@ Preface: All development should be conducted in Simplified Chinese.
 6. Commit Convention
    - before creating a commit, read and follow `CONTRIBUTING.md`
    - every new commit message must conform to Conventional Commits 1.0.0: `<type>[optional scope][optional !]: <description>`
+   - for a standard GitHub two-parent merge commit, the PR title in the generated message body is the Conventional Commits header; no other merge-message exception applies
    - use `feat` for new features and `fix` for bug fixes; mark breaking changes with `!` or an uppercase `BREAKING CHANGE:` footer
    - never bypass the repository's `commit-msg` hook with `--no-verify`
 

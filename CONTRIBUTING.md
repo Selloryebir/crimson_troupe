@@ -39,6 +39,7 @@
 6. 破坏性变更必须在 type/scope 后添加 `!`，或在脚注中使用大写 `BREAKING CHANGE: <说明>`；`BREAKING-CHANGE:` 与其同义。
 7. 除 `feat`、`fix` 外，可以使用符合变更性质的其他类型，例如 `docs`、`refactor`、`test`、`build`、`ci`、`chore`、`style`、`perf` 和 `revert`。
 8. 不得使用 `git commit --no-verify` 绕过仓库校验。
+9. GitHub 通过 “Create a merge commit” 自动生成的标准双父合并提交，可以保留 `Merge pull request #<编号> from <来源>` 首行；其正文第一行必须是符合本节规范的 PR 标题。此规则不豁免普通提交、非标准合并消息或不合规的 PR 标题。
 
 推荐使用英文 type 和 scope，description、正文与脚注说明使用简体中文。
 
