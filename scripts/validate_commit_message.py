@@ -27,6 +27,9 @@ def validate_message(message: str) -> list[str]:
     if not lines or not lines[0].strip():
         return ["提交消息首行不能为空。"]
 
+    if lines[0].startswith("Merge "):
+        return []
+
     if not HEADER_PATTERN.fullmatch(lines[0]):
         errors.append(
             "首行必须符合 <type>[optional scope][optional !]: <description>，且冒号后有一个空格。"

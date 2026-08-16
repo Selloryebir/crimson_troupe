@@ -29,6 +29,11 @@ class ValidateCommitMessageTest(unittest.TestCase):
             "fix(parser): 修复空格解析\n\n补充多段上下文。\n\nRefs: #123\nReviewed-by: Example"
         )
 
+    def test_accepts_merge_commit_message(self) -> None:
+        self.assert_valid(
+            "Merge pull request #2 from Selloryebir/dev\n\nchore(repo): 发布文档库与仓库治理基线"
+        )
+
     def test_rejects_invalid_header(self) -> None:
         self.assert_invalid("更新文档")
         self.assert_invalid("feat:缺少空格")
