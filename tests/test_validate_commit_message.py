@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.validate_commit_message import validate_message
+from scripts.validate_commit_message import validate_git_commit_message, validate_message
 
 
 class ValidateCommitMessageTest(unittest.TestCase):
@@ -45,6 +45,30 @@ class ValidateCommitMessageTest(unittest.TestCase):
         self.assert_invalid(
             "feat: 调整接口\n\n正文。\nBREAKING CHANGE: 脚注前缺少空行"
         )
+
+    def test_accepts_standard_github_merge_with_conventional_pr_title(self) -> None:
+        message = (
+            "Merge pull request #2 from Selloryebir/dev\n\n"
+            "chore(repo): 发布文档库与仓库治理基线"
+        )
+        self.assertEqual(validate_git_commit_message(message, parent_count=2), [])
+
+    def test_rejects_github_merge_with_invalid_pr_title(self) -> None:
+        message = "Merge pull request #2 from Selloryebir/dev\n\n发布治理基线"
+        self.assertTrue(validate_git_commit_message(message, parent_count=2))
+
+    def test_rejects_github_merge_without_pr_title(self) -> None:
+        message = "Merge pull request #2 from Selloryebir/dev"
+        self.assertTrue(validate_git_commit_message(message, parent_count=2))
+
+    def test_does_not_exempt_non_merge_or_nonstandard_merge_headers(self) -> None:
+        github_message = (
+            "Merge pull request #2 from Selloryebir/dev\n\n"
+            "chore(repo): 发布文档库与仓库治理基线"
+        )
+        branch_message = "Merge branch 'dev'\n\nchore(repo): 发布治理基线"
+        self.assertTrue(validate_git_commit_message(github_message, parent_count=1))
+        self.assertTrue(validate_git_commit_message(branch_message, parent_count=2))
 
 
 if __name__ == "__main__":

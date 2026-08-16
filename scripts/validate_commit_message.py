@@ -16,6 +16,7 @@ HEADER_PATTERN = re.compile(
 BREAKING_PREFIX_PATTERN = re.compile(r"^breaking(?: |-)?change(?::|$)", re.IGNORECASE)
 BREAKING_FOOTER_PATTERN = re.compile(r"^(?:BREAKING CHANGE|BREAKING-CHANGE): \S.*$")
 FOOTER_PATTERN = re.compile(r"^(?:[^\s:]+|BREAKING CHANGE)(?:: | #)\S.*$")
+GITHUB_MERGE_HEADER_PATTERN = re.compile(r"^Merge pull request #\d+ from \S+$")
 
 
 def validate_message(message: str) -> list[str]:
@@ -54,14 +55,39 @@ def validate_message(message: str) -> list[str]:
     return errors
 
 
-def commit_message(commit: str) -> str:
+def validate_git_commit_message(message: str, parent_count: int) -> list[str]:
+    """校验 Git commit；标准 GitHub 双父合并提交改为校验正文中的 PR 标题。"""
+
+    lines = message.replace("\r\n", "\n").replace("\r", "\n").splitlines()
+    if (
+        parent_count != 2
+        or not lines
+        or not GITHUB_MERGE_HEADER_PATTERN.fullmatch(lines[0])
+    ):
+        return validate_message(message)
+
+    if len(lines) < 3 or lines[1].strip():
+        return ["GitHub 合并提交必须在自动生成首行与 PR 标题之间保留一个空行。"]
+
+    pr_message = "\n".join(lines[2:])
+    if not pr_message.strip():
+        return ["GitHub 合并提交正文必须以符合 Conventional Commits 的 PR 标题开头。"]
+
+    return [
+        f"GitHub 合并提交中的 PR 标题或正文：{error}"
+        for error in validate_message(pr_message)
+    ]
+
+
+def commit_details(commit: str) -> tuple[int, str]:
     result = subprocess.run(
-        ["git", "show", "-s", "--format=%B", commit],
+        ["git", "show", "-s", "--format=%P%n%B", commit],
         check=True,
         capture_output=True,
         text=True,
     )
-    return result.stdout
+    parent_line, message = result.stdout.split("\n", maxsplit=1)
+    return len(parent_line.split()), message
 
 
 def commits_in_range(revision_range: str) -> list[str]:
@@ -74,8 +100,8 @@ def commits_in_range(revision_range: str) -> list[str]:
     return result.stdout.splitlines()
 
 
-def validate_named_message(name: str, message: str) -> bool:
-    errors = validate_message(message)
+def validate_named_message(name: str, message: str, parent_count: int = 1) -> bool:
+    errors = validate_git_commit_message(message, parent_count)
     if not errors:
         print(f"通过：{name}")
         return True
@@ -105,7 +131,8 @@ def main() -> int:
     commits = args.commit or commits_in_range(args.revision_range)
     ok = True
     for commit in commits:
-        ok = validate_named_message(commit, commit_message(commit)) and ok
+        parent_count, message = commit_details(commit)
+        ok = validate_named_message(commit, message, parent_count) and ok
     return 0 if ok else 1
 
 
