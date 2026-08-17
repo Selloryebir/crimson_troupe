@@ -8,16 +8,19 @@ version: 1.0.0
   - /archive/timeline
 依赖模块:
   - troupe_information
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
   - docs/background/01_world/02_国家实体.csv
   - docs/background/01_world/06_泰拉纪年.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
 本地状态:
   - selectedSnapshot
-  - spoilerScope
 产物: []
 降级方案: "按日期显示纯文本事件表"
 验收条件:
   - "泰拉年份与服务器发布日期分离"
   - "同年事件不自动显示为因果"
-  - "旧团、搜救、红丝绒和新酒神为不同快照"
+  - "事实证据时间线与表里网站创作时间线分开"
+  - "构建只读取经审核的内容投影，不直接读取 background"

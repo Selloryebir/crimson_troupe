@@ -42,7 +42,14 @@
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^docs/(background|content|blueprint)/"
+        "pattern": "^docs/(content|blueprint)/"
+      }
+    },
+    "内容准备依据": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^docs/background/"
       }
     },
     "本地状态": {

@@ -231,15 +231,15 @@ def _validate_schema(
         errors.append(f"{relative_path}:{location}: {error.message}")
 
 
-def _walk_declared_inputs(value: Any) -> Iterable[str]:
+def _walk_declared_paths(value: Any, field_name: str) -> Iterable[str]:
     if isinstance(value, dict):
         for key, child in value.items():
-            if key == "信息输入" and isinstance(child, list):
+            if key == field_name and isinstance(child, list):
                 yield from (item for item in child if isinstance(item, str))
-            yield from _walk_declared_inputs(child)
+            yield from _walk_declared_paths(child, field_name)
     elif isinstance(value, list):
         for child in value:
-            yield from _walk_declared_inputs(child)
+            yield from _walk_declared_paths(child, field_name)
 
 
 def _validate_feature_catalog(
@@ -405,11 +405,21 @@ def _validate_contracts(
     for relative_path, value in structured.items():
         if not relative_path.startswith("docs/"):
             continue
-        for declared_path in _walk_declared_inputs(value):
-            if not declared_path.startswith("docs/"):
-                errors.append(f"{relative_path}: 信息输入必须位于 docs/：{declared_path}")
-            elif not (root / declared_path).is_file():
-                errors.append(f"{relative_path}: 信息输入不存在：{declared_path}")
+        declared_fields = (
+            ("信息输入", "docs/"),
+            ("内容准备依据", "docs/background/"),
+        )
+        for field_name, required_prefix in declared_fields:
+            for declared_path in _walk_declared_paths(value, field_name):
+                if not declared_path.startswith(required_prefix):
+                    errors.append(
+                        f"{relative_path}: {field_name}必须位于 "
+                        f"{required_prefix}：{declared_path}"
+                    )
+                elif not (root / declared_path).is_file():
+                    errors.append(
+                        f"{relative_path}: {field_name}不存在：{declared_path}"
+                    )
 
 
 def validate_repository(

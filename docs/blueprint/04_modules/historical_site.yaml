@@ -1,0 +1,32 @@
+id: historical_site
+version: 1.0.0
+挂载点:
+  - global.footer-edition-stamp
+路由:
+  - /archive/site/:terraDate
+  - /archive/site/:terraDate/*
+依赖模块:
+  []
+内容准备依据:
+  - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+本地状态:
+  - discoveredSnapshotDates
+产物:
+  []
+降级方案: "关闭异常动效并以独立静态页面显示历史新闻、过去演出、人物状态、捕获日期和返回当前网站"
+验收条件:
+  - "只在 M3 安装；M0 不生成历史路由、空索引或无功能入口"
+  - "使用 /:profile/archive/site/:terraDate/*；0000 只用于蓝图和受限预览"
+  - "表里网站分别维护路由、页面、内容、功能、设计 token 和搜索索引，不要求一一对应"
+  - "历史网站只显示过去演出，不挂载预约、票篮或观演凭据流程"
+  - "索引按 localeProfileId + siteEditionId 隔离，不读取表网站、其他地域配置、其他语言字段或 background"
+  - "页脚版本戳只负责发现；直接 URL、刷新、书签和浏览器后退不设访问锁"
+  - "捕获栏显示泰拉日期并提供返回当前网站"
+  - "降低动效或无 JavaScript 时仍可阅读全部历史正文和表里冲突"

@@ -19,7 +19,8 @@
 | join_us | 虚构试镜与舞台名 | troupe_information | JRN-401、402 |
 | campaigns | 巡演季、片场周、档案夜与幕间游戏 | repertoire_archive、archive | JRN-601～603 |
 | narrative_layer | 双生相、改稿、结局与全站可撤销叙事覆盖 | — | JRN-007、206、501 |
+| historical_site | M3 旧酒神历史网站、日期路由、表里隔离与返回 | — | JRN-207 |
 
 推荐按 M0 核心壳与 repertoire/troupe 参考模块 → ticket_basket → souvenir/i18n/archive → 深层模块安装。M0 以炎国配置验证 i18n 接入面；首个多语言版本交付炎国、东国、维多利亚和哥伦比亚，后续六个计划配置按阶段人工启用。具体任务、路由和恢复路径见 `../03_journeys/journey_registry.yaml`。
 
-所有 `信息输入` 必须直接指向现存的 `docs/` 文件；需要行级关联时使用目标文件中明确的自然定位字段。模块加载失败只降级自身，不能破坏导航、正常演出详情、闭幕和无 JavaScript 基线。
+`内容准备依据` 只保存人工与 agent 生成、审阅模块内容时应核对的 `docs/background` 路径，不进入前端构建、模块运行或搜索。`信息输入` 才是构建期依赖，必须直接指向现存的 `docs/content` 或 `docs/blueprint` 文件。实际页面记录由构建入口选择的内容集提供；需要回溯事实时由内容记录保存来源路径和自然定位字段。两类路径都由结构契约校验，不得混用。模块加载失败只降级自身，不能破坏导航、正常演出详情、闭幕和无 JavaScript 基线。

@@ -11,10 +11,13 @@ version: 1.0.0
   - /versions/:ref
 依赖模块:
   []
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
 本地状态:
   []
 产物:
@@ -23,4 +26,4 @@ version: 1.0.0
 验收条件:
   - "藏品在没有图片时仍可完整呈现"
   - "来源与策展说明分栏"
-  - "剧透幕布可关闭"
+  - "不使用剧透锁隐藏档案；网站版本和内容类型使用明确文字标识"

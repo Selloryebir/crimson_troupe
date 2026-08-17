@@ -9,9 +9,13 @@ version: 1.0.0
   - /join/ending
 依赖模块:
   - troupe_information
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/01_organization/02_人物.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/04_performance/02_剧团岗位推演.csv
 本地状态:
   - fictionalRole
   - stageName

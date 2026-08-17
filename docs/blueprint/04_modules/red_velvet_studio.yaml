@@ -8,10 +8,13 @@ version: 1.0.0
   - /archive/wrankwood/production
 依赖模块:
   - archive
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/05_red_velvet/02_红丝绒关卡.csv
   - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
 本地状态:
   - selectedCut
   - productionDepartment

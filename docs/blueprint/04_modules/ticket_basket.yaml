@@ -9,11 +9,14 @@ version: 1.0.0
   - /changes/:performanceId
 依赖模块:
   - repertoire_archive
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
-  - docs/content/01_world/04_巡演地点候选.csv
   - docs/background/01_world/08_货币与准货币.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   - reservationSession
 产物:

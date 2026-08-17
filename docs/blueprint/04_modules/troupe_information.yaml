@@ -7,10 +7,14 @@ version: 1.1.0
   - /troupe
 依赖模块:
   []
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
   - docs/background/02_crimson_troupe/01_organization/02_人物.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/02_crimson_troupe/02_关系应用.csv
   - docs/content/04_performance/02_剧团岗位推演.csv
 本地状态:
   []

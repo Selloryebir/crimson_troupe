@@ -7,10 +7,13 @@ version: 1.0.0
   - /basket/understudy
 依赖模块:
   - ticket_basket
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
   - docs/background/02_crimson_troupe/01_organization/02_人物.csv
   - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
   - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   - actOneChoice

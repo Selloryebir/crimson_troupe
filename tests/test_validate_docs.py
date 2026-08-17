@@ -150,5 +150,25 @@ class ValidateDocsTest(unittest.TestCase):
                 any("不存在的旅程 JRN-999" in error for error in errors)
             )
 
+    def test_rejects_missing_runtime_and_preparation_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = root / "docs/config.yaml"
+            config.parent.mkdir(parents=True)
+            config.write_text(
+                (
+                    "信息输入:\n"
+                    "  - docs/content/missing.md\n"
+                    "内容准备依据:\n"
+                    "  - docs/background/missing.csv\n"
+                ),
+                encoding="utf-8",
+            )
+
+            errors = validate_repository(root, ["docs/config.yaml"])
+
+            self.assertTrue(any("信息输入不存在" in error for error in errors))
+            self.assertTrue(any("内容准备依据不存在" in error for error in errors))
+
 if __name__ == "__main__":
     unittest.main()

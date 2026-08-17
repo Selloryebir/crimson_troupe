@@ -7,11 +7,13 @@ version: 2.1.0
   - /compare/:ref
 依赖模块:
   []
+内容准备依据:
+  - docs/background/03_terminology/01_核心专名.csv
 信息输入:
   - docs/blueprint/05_i18n/01_locales.yaml
-  - docs/background/03_terminology/01_核心专名.csv
   - docs/content/03_localization/04_专名方案.csv
   - docs/content/03_localization/03_语言槽位.csv
+  - docs/content/05_site_editions/README.md
 本地状态:
   - localeProfileId
   - showEvidence
@@ -25,7 +27,7 @@ version: 2.1.0
   - "路径、HTML 语言、世界内语言、地区和币种使用显式映射，不自动推断"
   - "普通页面只显示当前配置的专名；跨语言对照只进入证据、档案或编辑预览"
   - "公开回退标注中文原文，开发预览另标待译，不自动机翻"
-  - "搜索按 localeProfileId 独立生成，不读取其他配置、其他语言字段或炎国回退文本"
-  - "缺少当前配置必要搜索文本的记录不进入该配置索引，但直接页面仍可按普通规则回退"
+  - "搜索按 localeProfileId + siteEditionId 独立生成，不读取其他配置、其他语言字段、炎国回退、其他网站版本或 background"
+  - "缺少当前组合必要搜索文本的记录不进入该组合索引，但直接页面仍可按普通规则回退"
   - "颜色不作为唯一证据提示"
   - "低可信候选不进入 SEO"

@@ -10,6 +10,8 @@ flowchart LR
   Route --> Page
   Currency --> Page
   Skin --> Page
+  Page --> Index[localeProfileId + siteEditionId 索引]
+  Index --> Page
   Page --> Evidence[证据/档案/编辑对照]
-  Evidence --> Status[官方/工作译/推拟/待审]
+  Evidence --> Status[官方/工作译/推拟/待审/网站版本]
   Status --> Page
