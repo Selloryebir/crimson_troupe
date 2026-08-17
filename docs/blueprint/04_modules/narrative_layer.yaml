@@ -1,32 +1,25 @@
 id: narrative_layer
-version: 1.0.0
+version: 1.1.0
 挂载点:
-  - home.after-hero
-  - troupe.after-history
-  - repertoire.detail
-  - global.after-content
+  - historical-site.content
 路由:
   []
 依赖模块:
   []
 内容准备依据:
-  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
 信息输入:
   - docs/content/05_site_editions/README.md
   - docs/content/02_crimson_troupe/01_专题内容应用.md
 本地状态:
-  - narrativeLayer
-  - endingFlags
-  - contentOverlays
-  - stableMode
+  []
 产物:
   []
-降级方案: "关闭双生翻面、改稿、污染和环境动效；显示不可变原文与普通导航"
+降级方案: "不应用涂抹、错装、划改或异常动效；显示不可变的历史正文和普通链接"
 验收条件:
   - "原始内容不可被覆盖或写回"
-  - "闭幕和稳定演出版立即清理全部副作用"
-  - "沉浸层不阻断演出、到访、购票或搜索任务"
+  - "稳定演出版只隐藏异常呈现，不退出路由或改写内容"
+  - "不读取购票结局、成就或票纹，不改变表网站内容、顺序、导航或搜索"
   - "降低动效时仍可理解版本差异"
   - "不持有 historical_site 的有效探索计数、异常层级或已发现快照状态；只提供无状态呈现原语"
