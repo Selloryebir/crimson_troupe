@@ -1,17 +1,16 @@
 id: souvenir_ticket
 version: 1.0.0
 挂载点:
-  - basket.after-confirmation
-  - basket.local-records
+  - purchase.success-result
 路由:
-  - /ticket/:localId
-  - /records
+  []
 依赖模块:
-  - ticket_basket
+  - purchase_flow
 内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
   - docs/background/01_world/08_货币与准货币.csv
 信息输入:
+  - docs/blueprint/04_modules/01_购票体验契约.md
   - docs/content/05_site_editions/README.md
   - docs/content/02_crimson_troupe/01_专题内容应用.md
   - docs/content/01_world/04_巡演地点候选.csv
@@ -24,5 +23,7 @@ version: 1.0.0
 验收条件:
   - "面向用户统一称为观演凭据，并标注不可入场、不可兑付且无现实价值"
   - "只有购到票的成功路线可导出 SVG/PNG；失败路线只显示不可下载的结果"
+  - "使用七个稳定 stampSegmentId 组成原创印章；每个唯一成就只增加一个图层，重复结局不叠加"
+  - "凭据按生成当时的成就集合渲染，不保存本地凭据档案，也不回写已经下载的文件"
   - "不含真实条码或商户"
   - "黑白、大字和纯文本视图可用"

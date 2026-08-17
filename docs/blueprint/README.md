@@ -28,6 +28,7 @@
 
 - 功能描述只在 `07_功能目录.csv`；旅程只使用功能名。
 - 模块清单只在 `04_modules/README.md`；模块细节在各 YAML。
+- 购票价格、七个结局、导演、本地状态和组合印章的详细规则只在 `04_modules/01_购票体验契约.md`。
 - 客席岗位推演只在 `../content/04_performance/02_剧团岗位推演.csv`。
 - 演出相关干员事实只在 `../background/04_performance/01_干员事实.csv`。
 - 网站版本与内容集契约只在 `../content/05_site_editions/README.md`；核心壳的内容输入只在 `01_core/05_架构.md` 声明，可插拔模块的 `信息输入` 只在各模块 YAML 声明，旅程注册表不重复维护。
