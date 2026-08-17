@@ -43,6 +43,16 @@ MARKDOWN_LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 MARKDOWN_REFERENCE_PATTERN = re.compile(r"(?m)^\s*\[[^\]]+\]:\s*(\S+)")
 HTML_LINK_PATTERN = re.compile(r"(?:href|src)=[\"']([^\"']+)[\"']", re.IGNORECASE)
 FENCED_CODE_PATTERN = re.compile(r"```.*?```", re.DOTALL)
+MARKDOWN_IMAGE_PATTERN = re.compile(
+    r"!\[[^\]]*\](?:\([^)]+\)|\[[^\]]*\])"
+)
+HTML_IMAGE_PATTERN = re.compile(r"<img\b", re.IGNORECASE)
+COLLECTIBLES_PREFIX = "docs/background/02_crimson_troupe/04_collectibles/"
+IMAGE_SUFFIXES = {".avif", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"}
+FEATURE_CATALOG_PATH = "docs/blueprint/07_功能目录.csv"
+FEATURE_BATCHES = {"M0", "M1", "M2", "M3"}
+FEATURE_PRIORITIES = {"P0", "P1", "P2"}
+FEATURE_REVIEW_STATES = {"待审", "通过", "修改后通过", "不实现"}
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -184,6 +194,18 @@ def _validate_markdown_links(
             errors.append(f"{relative_path}: 本地链接目标不存在：{target}")
 
 
+def _validate_collectible_text_only(
+    text: str,
+    relative_path: str,
+    errors: list[str],
+) -> None:
+    if not relative_path.startswith(COLLECTIBLES_PREFIX):
+        return
+    content = FENCED_CODE_PATTERN.sub("", text)
+    if MARKDOWN_IMAGE_PATTERN.search(content) or HTML_IMAGE_PATTERN.search(content):
+        errors.append(f"{relative_path}: 藏品目录必须保持纯文本，不得嵌入图片")
+
+
 def _format_schema_path(parts: Iterable[Any]) -> str:
     rendered = "".join(
         f"[{part}]" if isinstance(part, int) else f".{part}" for part in parts
@@ -209,15 +231,92 @@ def _validate_schema(
         errors.append(f"{relative_path}:{location}: {error.message}")
 
 
-def _walk_declared_inputs(value: Any) -> Iterable[str]:
+def _walk_declared_paths(value: Any, field_name: str) -> Iterable[str]:
     if isinstance(value, dict):
         for key, child in value.items():
-            if key == "信息输入" and isinstance(child, list):
+            if key == field_name and isinstance(child, list):
                 yield from (item for item in child if isinstance(item, str))
-            yield from _walk_declared_inputs(child)
+            yield from _walk_declared_paths(child, field_name)
     elif isinstance(value, list):
         for child in value:
-            yield from _walk_declared_inputs(child)
+            yield from _walk_declared_paths(child, field_name)
+
+
+def _validate_feature_catalog(
+    root: Path,
+    journey_ids: set[str],
+    module_ids: set[str],
+    errors: list[str],
+) -> None:
+    path = root / FEATURE_CATALOG_PATH
+    if not path.is_file() or not journey_ids:
+        return
+
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as stream:
+            reader = csv.DictReader(stream)
+            required_fields = {
+                "所属模块",
+                "名称",
+                "优先级",
+                "主旅程",
+                "辅助旅程",
+                "开发批次",
+                "人工审核",
+            }
+            missing_fields = required_fields - set(reader.fieldnames or [])
+            if missing_fields:
+                errors.append(
+                    f"{FEATURE_CATALOG_PATH}: 缺少必需列："
+                    + "、".join(sorted(missing_fields))
+                )
+                return
+
+            feature_keys: set[tuple[str, str]] = set()
+            for row in reader:
+                line_number = reader.line_num
+                module_id = (row["所属模块"] or "").strip()
+                name = (row["名称"] or "").strip()
+                key = (module_id, name)
+                if key in feature_keys:
+                    errors.append(
+                        f"{FEATURE_CATALOG_PATH}:{line_number}: "
+                        f"功能重复：{module_id} / {name}"
+                    )
+                feature_keys.add(key)
+
+                if module_id not in module_ids:
+                    errors.append(
+                        f"{FEATURE_CATALOG_PATH}:{line_number}: "
+                        f"引用了不存在的模块 {module_id}"
+                    )
+
+                for field in ("主旅程", "辅助旅程"):
+                    journey_id = (row[field] or "").strip()
+                    if field == "主旅程" and not journey_id:
+                        errors.append(
+                            f"{FEATURE_CATALOG_PATH}:{line_number}: 主旅程不能为空"
+                        )
+                    elif journey_id and journey_id not in journey_ids:
+                        errors.append(
+                            f"{FEATURE_CATALOG_PATH}:{line_number}: "
+                            f"{field}引用了不存在的旅程 {journey_id}"
+                        )
+
+                checks = (
+                    ("优先级", FEATURE_PRIORITIES),
+                    ("开发批次", FEATURE_BATCHES),
+                    ("人工审核", FEATURE_REVIEW_STATES),
+                )
+                for field, allowed_values in checks:
+                    value = (row[field] or "").strip()
+                    if value not in allowed_values:
+                        errors.append(
+                            f"{FEATURE_CATALOG_PATH}:{line_number}: "
+                            f"{field}值无效：{value or '<空>'}"
+                        )
+    except (csv.Error, UnicodeDecodeError):
+        return
 
 
 def _validate_contracts(
@@ -261,30 +360,66 @@ def _validate_contracts(
                     f"{relative_path}: 模块 {module_id} 引用了不存在的依赖模块 {dependency}"
                 )
 
+    journey_ids: set[str] = set()
     registry = structured.get(registry_path)
     journey_schema = structured.get(journey_schema_path)
     if isinstance(registry, dict):
         journeys = registry.get("旅程")
         if not isinstance(journeys, list):
             errors.append(f"{registry_path}: 旅程必须是列表")
-        elif journey_schema is not None:
+        else:
             for index, journey in enumerate(journeys):
-                _validate_schema(
-                    journey,
-                    journey_schema,
-                    registry_path,
-                    errors,
-                    prefix=f"旅程[{index}]",
-                )
+                if journey_schema is not None:
+                    _validate_schema(
+                        journey,
+                        journey_schema,
+                        registry_path,
+                        errors,
+                        prefix=f"旅程[{index}]",
+                    )
+                if not isinstance(journey, dict):
+                    continue
+
+                journey_id = journey.get("id")
+                if isinstance(journey_id, str):
+                    if journey_id in journey_ids:
+                        errors.append(f"{registry_path}: 旅程 id 重复：{journey_id}")
+                    journey_ids.add(journey_id)
+
+                journey_modules = journey.get("模块", [])
+                if not isinstance(journey_modules, list):
+                    continue
+                for module_id in journey_modules:
+                    if (
+                        isinstance(module_id, str)
+                        and module_id != "core"
+                        and module_id not in modules
+                    ):
+                        errors.append(
+                            f"{registry_path}:旅程[{index}]: "
+                            f"引用了不存在的模块 {module_id}"
+                        )
+
+    _validate_feature_catalog(root, journey_ids, {"core", *modules}, errors)
 
     for relative_path, value in structured.items():
         if not relative_path.startswith("docs/"):
             continue
-        for declared_path in _walk_declared_inputs(value):
-            if not declared_path.startswith("docs/"):
-                errors.append(f"{relative_path}: 信息输入必须位于 docs/：{declared_path}")
-            elif not (root / declared_path).is_file():
-                errors.append(f"{relative_path}: 信息输入不存在：{declared_path}")
+        declared_fields = (
+            ("信息输入", "docs/"),
+            ("内容准备依据", "docs/background/"),
+        )
+        for field_name, required_prefix in declared_fields:
+            for declared_path in _walk_declared_paths(value, field_name):
+                if not declared_path.startswith(required_prefix):
+                    errors.append(
+                        f"{relative_path}: {field_name}必须位于 "
+                        f"{required_prefix}：{declared_path}"
+                    )
+                elif not (root / declared_path).is_file():
+                    errors.append(
+                        f"{relative_path}: {field_name}不存在：{declared_path}"
+                    )
 
 
 def validate_repository(
@@ -298,7 +433,15 @@ def validate_repository(
 
     for relative_path in selected_paths:
         path = root / relative_path
-        if not path.is_file() or not _is_text_path(path):
+        if not path.is_file():
+            continue
+        if (
+            relative_path.startswith(COLLECTIBLES_PREFIX)
+            and path.suffix.lower() in IMAGE_SUFFIXES
+        ):
+            errors.append(f"{relative_path}: 藏品目录必须保持纯文本，不得跟踪图片文件")
+            continue
+        if not _is_text_path(path):
             continue
         text = _read_text(path, relative_path, errors)
         if text is None:
@@ -319,6 +462,7 @@ def validate_repository(
                 errors.append(f"{relative_path}: YAML 无法解析（{error}）")
         elif suffix == ".md":
             _validate_markdown_links(root, path, text, relative_path, errors)
+            _validate_collectible_text_only(text, relative_path, errors)
 
     _validate_contracts(root, structured, errors)
     return sorted(set(errors))

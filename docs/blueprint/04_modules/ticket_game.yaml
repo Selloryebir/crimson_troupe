@@ -1,25 +1,30 @@
 id: ticket_game
 version: 1.0.0
 挂载点:
-  - basket.before-confirmation
+  - purchase.after-standard-failure
+  - purchase.result-actions
 路由:
-  - /basket/audition
-  - /basket/understudy
+  []
 依赖模块:
-  - ticket_basket
-信息输入:
+  - purchase_flow
+内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
+信息输入:
+  - docs/blueprint/04_modules/01_购票体验契约.md
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
   - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
-  - actOneChoice
-  - stampPlacement
-  - clauseChoice
-  - endingSeed
+  - ticketExperienceState（由 purchase_flow 的公开状态接口维护）
 产物:
   []
-降级方案: "skip directly to complete fictional reservation"
+降级方案: "黄牛插件不可用时保留正常渠道失败结果、重试和返回演出详情，不伪造黄牛结局"
 验收条件:
-  - "失败不阻止出票"
-  - "无计时模式"
-  - "拖拽有按钮替代"
-  - "结果只改变虚构票样和结局"
+  - "只实现购票失败后的黄牛平台讽刺，不恢复三幕审票、候补席点名或其他小游戏"
+  - "黄牛分支固定五个结局，完整流程固定七个结局；内部 ID 与能力以购票体验契约为准"
+  - "退出挽留只出现一次，拒绝、接受原价和接受优惠均可达"
+  - "随机种子、动态权重和硬约束共同防止结果长时间重复或不可达"
+  - "失败路线不提供可下载观演凭据；所有结果允许从结果页继续探索"
+  - "无强迫倒计时，不仿冒现实平台、客服或交易界面"

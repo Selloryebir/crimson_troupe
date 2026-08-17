@@ -1,0 +1,31 @@
+id: purchase_flow
+version: 1.0.0
+挂载点:
+  - schedule.detail.primary-action
+  - schedule.card.purchase-action
+路由:
+  - /purchase/:performanceId
+依赖模块:
+  - repertoire_archive
+内容准备依据:
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/01_world/08_货币与准货币.csv
+信息输入:
+  - docs/blueprint/04_modules/01_购票体验契约.md
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/01_world/04_巡演地点候选.csv
+本地状态:
+  - purchaseDraft（仅当前流程内存）
+  - ticketExperienceState（版本化 localStorage，30 天滚动期限）
+产物:
+  []
+降级方案: "显示当前场次、完整分区列表和双币价格；存储不可用时只在本次页面会话内运行"
+验收条件:
+  - "只处理 URL 中的单个 performanceId，不提供票篮、多场次暂存、流程内换场、改签或退款"
+  - "不接现实支付，不要求身份资料，不建立余额或订单"
+  - "只选择 S/A/B/C/D/包厢等分区，不选择或保留具体座位"
+  - "桌面与移动端均显示完整分区图，并以文字、边界或纹理提供非颜色线索"
+  - "基准价格固定，黄牛比例参数化；LMD 与世界内币种按购票体验契约同时显示"
+  - "购票结果、导演、本地状态和到期规则只采用购票体验契约，不在模块内另建定义"
+  - "面向用户的购票入口名称由已审核的当前地域配置资源提供"

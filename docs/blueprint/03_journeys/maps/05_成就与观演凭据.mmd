@@ -1,0 +1,14 @@
+flowchart LR
+  Outcome[七个稳定 Outcome ID 之一] --> Unique{是否为新成就?}
+  Unique -->|是| Add[加入唯一 achievementIds]
+  Unique -->|否| Keep[保持原成就集合]
+  Add --> Director[更新导演计数·滚动续期 30 天]
+  Keep --> Director
+  Director --> Hint{连续两次无新成就?}
+  Hint -->|是| Guide[显示当前语言路线提示]
+  Hint -->|否| Success{本轮购票成功?}
+  Guide --> Success
+  Success -->|否| Retry[无下载·重试或返回]
+  Success -->|是| Stamp[按唯一成就渲染七段组合印章]
+  Stamp --> Credential[LMD票面·随机长条票纹<br/>SVG/PNG/纯文本]
+  Clear[用户清除或状态过期] --> Reset[开始新的收集周期]
