@@ -4,7 +4,7 @@
 
 1. 修改前阅读 `docs/README.md` 与 `docs/01_文档组织规范.md`，确认信息层级和唯一维护位置。
 2. 保留事实、来源、审查状态和多语种缺失标记，不以编辑推测覆盖原记录。
-3. 首次运行校验前执行 `python3 -m pip install -r requirements-dev.txt` 安装固定的开发依赖。
+3. 使用 Python 3.14，并在首次运行校验前执行 `python3 -m pip install -r requirements-dev.txt` 安装固定的开发依赖。
 4. 提交前运行文档校验和单元测试，并确认没有未经授权的第三方原图进入暂存区。
 5. 提交信息遵循下述 Conventional Commits 规范。
 

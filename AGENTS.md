@@ -44,6 +44,6 @@ Preface: All development should be conducted in Simplified Chinese.
    - never add third-party originals to issues, pull requests, fixtures, builds, or releases
 
 8. Repository Verification
-   - install development dependencies from `requirements-dev.txt`
+   - use Python 3.14 and install development dependencies from `requirements-dev.txt`
    - before handoff, run `python3 scripts/validate_docs.py` and `python3 -m unittest discover -s tests -p 'test_*.py'`
    - the tracked collectibles catalog is text-only; never restore third-party image indexes or embeds
