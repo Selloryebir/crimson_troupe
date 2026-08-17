@@ -22,6 +22,7 @@
 | 查创作口径、工作译和语言方案 | `content/README.md` |
 | 查表网站、历史网站、泰拉日期 URL 与搜索隔离 | `content/05_site_editions/README.md` |
 | 做专业演出网站信息架构 | `blueprint/01_core/01_专业演出网站基线.md` |
+| 查前端技术栈、内容校验和代码质量边界 | `blueprint/01_core/03_实现结构.md` |
 | 查内容发布、正式收录、功能排序和故障回退 | `blueprint/01_core/07_发布与维护.md` |
 | 查功能、旅程、模块和技术 i18n | `blueprint/README.md` |
 | 查来源、证据等级、待审项与资料缺口 | `planning/01_knowledge_review/README.md` |
