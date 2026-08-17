@@ -43,13 +43,6 @@
         "type": "string"
       }
     },
-    "信息输入": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^docs/(background|content|blueprint)/"
-      }
-    },
     "主流程": {
       "type": "array",
       "minItems": 2,
@@ -83,5 +76,6 @@
         "不实现"
       ]
     }
-  }
+  },
+  "additionalProperties": false
 }

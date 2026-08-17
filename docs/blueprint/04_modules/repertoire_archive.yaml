@@ -1,5 +1,5 @@
 id: repertoire_archive
-version: 1.0.0
+version: 1.1.0
 挂载点:
   - repertoire.list
   - repertoire.detail
@@ -12,15 +12,23 @@ version: 1.0.0
   - /past-performances
 依赖模块:
   []
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/07_留声典藏.csv
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/03_terminology/01_核心专名.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   []
 产物:
   []
 降级方案: "show text list without flip animation or images"
 验收条件:
-  - "中英日差异并列"
+  - "M0 只生成日历、场次与剧目路由；/past-performances 在 M1 公开历史内容交付后生成"
+  - "证据视图中的中英日差异并列"
   - "普通面与猩红面可独立阅读"
   - "翻页不依赖 hover"

@@ -1,5 +1,5 @@
 id: i18n
-version: 1.0.0
+version: 2.2.0
 挂载点:
   - global.header
   - content.translation-note
@@ -7,18 +7,28 @@ version: 1.0.0
   - /compare/:ref
 依赖模块:
   []
+内容准备依据:
+  - docs/background/03_terminology/01_核心专名.csv
 信息输入:
   - docs/blueprint/05_i18n/01_locales.yaml
-  - docs/content/03_localization/04_国家名方案.csv
-  - docs/content/03_localization/05_语言名方案.csv
+  - docs/content/03_localization/04_专名方案.csv
+  - docs/content/03_localization/03_语言槽位.csv
+  - docs/content/05_site_editions/README.md
 本地状态:
-  - deliveryLocale
-  - diegeticLocale
+  - localeProfileId
   - showEvidence
 产物:
   []
-降级方案: "use default delivery locale and retain official proper names"
+降级方案: "普通页面回退到炎国配置，保留官方专名，并在公开页面低干扰标注中文原文；搜索不使用该回退"
 验收条件:
-  - "交付语言与世界内语域分离"
+  - "国家实体、现实文本语言、世界内语言身份、路径和币种由一个地域配置原子切换"
+  - "M0 只生成炎国配置；首个多语言版本的炎国、东国、维多利亚和哥伦比亚覆盖全部 M0 页面并通过同一验收后共同发布"
+  - "首个多语言交付的必要正文不依赖炎国回退；普通页面仅对允许暂缺的非必要字段使用回退"
+  - "M2 完成黄牛支线与七结局导演后优先准备莱塔尼亚；其他五个后续计划配置由人工安排，研究候选不进入运行时"
+  - "路径、HTML 语言、世界内语言、地区和币种使用显式映射，不自动推断"
+  - "普通页面只显示当前配置的专名；跨语言对照只进入证据或编辑预览"
+  - "公开回退标注中文原文，开发预览另标待译，不自动机翻"
+  - "搜索按 localeProfileId + siteEditionId 独立生成，不读取其他配置、其他语言字段、炎国回退、其他网站版本或 background"
+  - "缺少当前组合必要搜索文本的记录不进入该组合索引，但直接页面仍可按普通规则回退"
   - "颜色不作为唯一证据提示"
   - "低可信候选不进入 SEO"

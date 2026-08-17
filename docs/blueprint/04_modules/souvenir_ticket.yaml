@@ -1,25 +1,32 @@
 id: souvenir_ticket
-version: 1.0.0
+version: 1.1.0
 挂载点:
-  - basket.after-confirmation
-  - profile.ticket-wallet
+  - purchase.success-result
 路由:
-  - /ticket/:localId
-  - /wallet
+  []
 依赖模块:
-  - ticket_basket
-信息输入:
+  - purchase_flow
+内容准备依据:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-  - docs/content/01_world/04_巡演地点候选.csv
   - docs/background/01_world/08_货币与准货币.csv
+信息输入:
+  - docs/blueprint/04_modules/01_购票体验契约.md
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   []
 产物:
+  - SVG
   - PNG
-  - "print CSS A4"
-  - "print CSS Letter"
-降级方案: "download a text-only ticket card"
+降级方案: "为购票成功结果显示信息等价的纯文本观演凭据"
 验收条件:
-  - "标注非现实入场凭证且无价值"
-  - "不含真实条码或商户"
-  - "黑白和大字版可用"
+  - "面向用户统一称为观演凭据；项目性质只在网站入口和页脚说明，不印入凭据"
+  - "凭据显示剧目、场次日期与时间、城市/场馆、分区、LMD 票面价、随机长条票纹和当前组合印章"
+  - "地区币、路线结果文字、连续序号和非现实声明不进入凭据"
+  - "只有购到票的成功路线可导出 SVG/PNG；失败路线只显示不可下载的结果"
+  - "使用七个稳定 stampSegmentId 组成原创印章；每个唯一成就只增加一个图层，重复结局不叠加"
+  - "凭据按生成当时的成就集合渲染，不保存本地凭据档案，也不回写已经下载的文件"
+  - "随机长条票纹在一次预览与 SVG/PNG 导出中保持一致，不采用现实条码制式，不承载订单、校验、追踪或入场语义，也不持久保存"
+  - "不含商户、税务或现实交易字段"
+  - "黑白、大字和纯文本视图可用"

@@ -1,0 +1,11 @@
+flowchart LR
+  CTA{开售状态} -->|可购票| Purchase[单场次购票流程]
+  CTA -->|未开售| Alert[本地提醒]
+  CTA -->|候补/退回票| Wait[候补说明]
+  CTA -->|免票| Free[入场说明·不进购票流程]
+  CTA -->|外部主办| External[责任边界/离站提示]
+  Purchase --> Seat[完整分区图：S/A/B/C/D/包厢]
+  Seat --> Price[固定基准价·双币显示]
+  Price --> Submit[点击当前语言的购票操作]
+  Submit --> Result[购票结果判定]
+  Result -->|返回| Detail[当前演出详情]

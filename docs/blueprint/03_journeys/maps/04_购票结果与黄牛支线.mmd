@@ -1,0 +1,20 @@
+flowchart TD
+  Submit[点击购票] --> First{正常渠道结果}
+  First -->|叙事网络波动| Network[网络波动结果·可重试]
+  First -->|成功| NormalSuccess[正常购票成功]
+  First -->|失败| Offer[黄牛原价报价·加价与手续费]
+  Offer -->|接受| Direct{原价抢票结果}
+  Offer -->|拒绝| Retention[一次性 2% 挽留优惠]
+  Retention -->|再次拒绝| Reject[拒绝黄牛结果·可重试]
+  Retention -->|接受| Discount{优惠抢票结果}
+  Direct -->|成功| ScalperSuccess[原价抢票成功]
+  Direct -->|失败| ScalperFailure[原价抢票失败·仅显示手续费]
+  Discount -->|成功| DiscountSuccess[优惠抢票成功]
+  Discount -->|失败| DiscountFailure[优惠抢票失败·仅显示手续费]
+  NormalSuccess --> Credential[生成观演凭据]
+  ScalperSuccess --> Credential
+  DiscountSuccess --> Credential
+  Network --> Retry[重试当前场次/返回详情]
+  Reject --> Retry
+  ScalperFailure --> Retry
+  DiscountFailure --> Retry

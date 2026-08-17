@@ -1,23 +1,33 @@
 id: troupe_information
-version: 1.0.0
+version: 1.2.0
 挂载点:
   - troupe.primary
   - home.after-hero
 路由:
   - /troupe
-  - /troupe/people/:slug
+  - /troupe/history
+  - /troupe/join
 依赖模块:
   []
-信息输入:
+内容准备依据:
   - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
   - docs/background/02_crimson_troupe/01_organization/02_人物.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+信息输入:
+  - docs/content/05_site_editions/README.md
+  - docs/content/02_crimson_troupe/01_专题内容应用.md
+  - docs/content/02_crimson_troupe/02_关系应用.csv
+  - docs/content/04_performance/02_剧团岗位推演.csv
 本地状态:
   []
 产物:
   []
-降级方案: "render available sections; mark missing sections as 档案整理中"
+降级方案: "以静态文本呈现可用的组织、剧务历史和加入我们章节"
 验收条件:
   - "人物年代不被压成同一时期"
+  - "M0 在剧团页内展示部门和成员，不生成独立人物详情路由"
+  - "M0 生成 /troupe 和 /troupe/join；/troupe/history 在 M1 公开历史内容交付后生成"
+  - "剧务历史使用普通官网内容结构，不建立事实百科或通用档案馆"
+  - "加入我们是静态次级页面，不进入主导航，不提供试镜、用户输入、本地草稿或加入结局"
   - "稳定原文随时可见"
   - "移动端章节目录可键盘操作"
