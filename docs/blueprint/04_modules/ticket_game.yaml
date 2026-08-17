@@ -17,11 +17,14 @@ version: 1.0.0
   - stampPlacement
   - clauseChoice
   - endingSeed
+  - reservationOutcome
 产物:
   []
-降级方案: "skip directly to complete fictional reservation"
+降级方案: "skip the game and return to the ordinary fictional reservation branch"
 验收条件:
-  - "失败不阻止出票"
+  - "结果覆盖购到票与未购到票，失败路线不提供可下载观演凭据"
+  - "允许改选场次、重试和探索可复现的其他路线"
+  - "黄牛支线覆盖使用/拒绝平台、以退出相威胁换取少量折扣和是否抢到票"
   - "无计时模式"
   - "拖拽有按钮替代"
-  - "结果只改变虚构票样和结局"
+  - "跳过小游戏返回普通预约分支，不强制成功"

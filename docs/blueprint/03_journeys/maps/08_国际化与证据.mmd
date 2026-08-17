@@ -3,9 +3,11 @@ flowchart LR
   Delivery --> CN[简中]
   Delivery --> EN[English]
   Delivery --> JP[日本語]
-  Page --> Diegetic[泰拉语域]
+  Page --> Diegetic[人工白名单泰拉语域]
   Diegetic --> Skin[短标签·日期·节目册皮肤]
   Skin --> Page
+  Diegetic --> Currency[LMD + 显式映射币种]
+  Currency --> Page
   Page --> Evidence[并排对照]
   Evidence --> Status[官方/工作译/推拟/待审]
   Status --> Page

@@ -15,13 +15,15 @@ version: 1.0.0
   - docs/content/01_world/04_巡演地点候选.csv
   - docs/background/01_world/08_货币与准货币.csv
 本地状态:
-  - selectedPerformance
-  - seatClass
-  - fictionalCurrency
+  - reservationSession
 产物:
   []
 降级方案: "offer a plain local reservation form"
 验收条件:
   - "不接现实支付"
   - "不要求身份资料"
+  - "同一流程只保存一份场次、分区和路线引用，不为各结局复制票据信息"
+  - "只选择 S/A/B/C/D/包厢等分区，不选择或保留具体座位"
+  - "桌面与移动端均显示完整分区图，并以文字、边界或纹理提供非颜色线索"
+  - "LMD 与世界内币种使用人工显式映射；缺失汇率的 1:1 值标记为演示占位"
   - "清空票篮一步可达"

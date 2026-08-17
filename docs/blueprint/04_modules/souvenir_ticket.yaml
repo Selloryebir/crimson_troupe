@@ -2,10 +2,10 @@ id: souvenir_ticket
 version: 1.0.0
 挂载点:
   - basket.after-confirmation
-  - profile.ticket-wallet
+  - basket.local-records
 路由:
   - /ticket/:localId
-  - /wallet
+  - /records
 依赖模块:
   - ticket_basket
 信息输入:
@@ -15,11 +15,11 @@ version: 1.0.0
 本地状态:
   []
 产物:
+  - SVG
   - PNG
-  - "print CSS A4"
-  - "print CSS Letter"
-降级方案: "download a text-only ticket card"
+降级方案: "show an equivalent text-only credential for successful outcomes"
 验收条件:
-  - "标注非现实入场凭证且无价值"
+  - "面向用户统一称为观演凭据，并标注不可入场、不可兑付且无现实价值"
+  - "只有购到票的成功路线可导出 SVG/PNG；失败路线只显示不可下载的结果"
   - "不含真实条码或商户"
-  - "黑白和大字版可用"
+  - "黑白、大字和纯文本视图可用"
