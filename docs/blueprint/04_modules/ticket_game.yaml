@@ -9,6 +9,8 @@ version: 1.0.0
   - ticket_basket
 信息输入:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
   - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   - actOneChoice

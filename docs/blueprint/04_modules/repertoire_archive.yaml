@@ -15,6 +15,10 @@ version: 1.0.0
 信息输入:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/07_留声典藏.csv
+  - docs/background/02_crimson_troupe/01_organization/02_人物.csv
+  - docs/background/03_terminology/01_核心专名.csv
+  - docs/content/01_world/04_巡演地点候选.csv
 本地状态:
   []
 产物:

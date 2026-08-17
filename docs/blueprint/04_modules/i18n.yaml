@@ -9,8 +9,9 @@ version: 1.0.0
   []
 信息输入:
   - docs/blueprint/05_i18n/01_locales.yaml
-  - docs/content/03_localization/04_国家名方案.csv
-  - docs/content/03_localization/05_语言名方案.csv
+  - docs/background/03_terminology/01_核心专名.csv
+  - docs/content/03_localization/04_专名方案.csv
+  - docs/content/03_localization/03_语言槽位.csv
 本地状态:
   - deliveryLocale
   - diegeticLocale

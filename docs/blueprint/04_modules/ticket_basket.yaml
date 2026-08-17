@@ -11,6 +11,7 @@ version: 1.0.0
   - repertoire_archive
 信息输入:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
   - docs/content/01_world/04_巡演地点候选.csv
   - docs/background/01_world/08_货币与准货币.csv
 本地状态:

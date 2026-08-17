@@ -11,6 +11,7 @@ version: 1.0.0
 信息输入:
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
   - docs/background/01_world/02_国家实体.csv
+  - docs/background/01_world/06_泰拉纪年.csv
 本地状态:
   - selectedSnapshot
   - spoilerScope

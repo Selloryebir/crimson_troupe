@@ -12,6 +12,7 @@ version: 1.0.0
   - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
   - docs/background/02_crimson_troupe/01_organization/02_人物.csv
   - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
+  - docs/content/04_performance/02_剧团岗位推演.csv
 本地状态:
   []
 产物:

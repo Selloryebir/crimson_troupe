@@ -15,6 +15,8 @@ version: 1.0.0
   - archive
 信息输入:
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/03_幻觉报告册.csv
+  - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
   - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
   - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
   - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv

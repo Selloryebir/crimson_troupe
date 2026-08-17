@@ -13,9 +13,6 @@
       - /
     模块:
       - core
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
     主流程:
       - "读取今夜/近期演出与状态"
       - "选择演出日历、剧团、到访或档案"
@@ -40,10 +37,6 @@
     模块:
       - core
       - repertoire_archive
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
     主流程:
       - "选择列表或日历"
       - "设置日期/城市/剧目/状态筛选"
@@ -69,10 +62,6 @@
     模块:
       - core
       - repertoire_archive
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
-      - docs/content/01_world/04_巡演地点候选.csv
     主流程:
       - "读取场次关键信息"
       - "浏览节目/阵容/时长/幕间"
@@ -97,10 +86,6 @@
       - /troupe/people/:slug
     模块:
       - troupe_information
-    信息输入:
-      - docs/background/02_crimson_troupe/01_organization/01_组织与沿革.md
-      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
-      - docs/content/04_performance/02_剧团岗位推演.csv
     主流程:
       - "阅读公开组织简介"
       - "按台前/乐团/舞台/巡演分组"
@@ -125,9 +110,6 @@
       - /visit/:venueId
     模块:
       - core
-    信息输入:
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/01_world/06_泰拉纪年.csv
     主流程:
       - "确认城市与抵达窗口"
       - "查看入口/候场/设施/技艺限制"
@@ -153,9 +135,6 @@
     模块:
       - core
       - repertoire_archive
-    信息输入:
-      - docs/background/03_terminology/90_reference_lexicon/01_泰拉词库.csv
-      - docs/background/03_terminology/01_核心专名.csv
     主流程:
       - "输入专名或筛选类型"
       - "显示正规结果与证据层"
@@ -178,8 +157,6 @@
     模块:
       - core
       - narrative_layer
-    信息输入:
-      []
     主流程:
       - "先显示可用首页"
       - "滚动或点击启幕"
@@ -204,10 +181,6 @@
     模块:
       - repertoire_archive
       - ticket_basket
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/01_world/08_货币与准货币.csv
     主流程:
       - "选择场次"
       - "选择席位分区与世界内币种显示"
@@ -233,9 +206,6 @@
     模块:
       - repertoire_archive
       - ticket_basket
-    信息输入:
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/01_world/08_货币与准货币.csv
     主流程:
       - "读取开售状态"
       - "显示对应主操作与原因"
@@ -259,9 +229,6 @@
     模块:
       - ticket_basket
       - ticket_game
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
     主流程:
       - "匹配剧目与城市"
       - "校准原创票戳"
@@ -287,9 +254,6 @@
     模块:
       - ticket_basket
       - ticket_game
-    信息输入:
-      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
-      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
     主流程:
       - "遇到候补席代理"
       - "议价/揭穿/拒绝/请鉴票"
@@ -313,9 +277,6 @@
       - /changes/:performanceId
     模块:
       - ticket_basket
-    信息输入:
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
     主流程:
       - "阅读变更原因与时间"
       - "比较替代场次"
@@ -341,10 +302,6 @@
     模块:
       - ticket_basket
       - souvenir_ticket
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/01_world/08_货币与准货币.csv
     主流程:
       - "预览公开/档案票面"
       - "选择 A4/Letter/手机卡"
@@ -369,10 +326,6 @@
       - /repertoire/:slug
     模块:
       - repertoire_archive
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/07_留声典藏.csv
-      - docs/background/03_terminology/01_核心专名.csv
     主流程:
       - "浏览剧目列表"
       - "阅读普通节目单面"
@@ -397,9 +350,6 @@
       - /archive/collectibles/:id
     模块:
       - archive
-    信息输入:
-      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
     主流程:
       - "筛选藏品分类"
       - "打开物件记录"
@@ -427,10 +377,6 @@
       - repertoire_archive
       - archive
       - timeline_archive
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/06_过往演出展览.csv
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
-      - docs/background/01_world/06_泰拉纪年.csv
     主流程:
       - "选择赛季或时间快照"
       - "筛选演出与事件"
@@ -455,9 +401,6 @@
     模块:
       - archive
       - hallucination_layer
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/03_幻觉报告册.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
     主流程:
       - "选择两个症状卡"
       - "预览组合效果与文本规则"
@@ -483,10 +426,6 @@
     模块:
       - archive
       - red_velvet_studio
-    信息输入:
-      - docs/background/02_crimson_troupe/05_red_velvet/02_红丝绒关卡.csv
-      - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
     主流程:
       - "选择关卡/镜头版本"
       - "查看演职员与工种"
@@ -512,9 +451,6 @@
     模块:
       - archive
       - narrative_layer
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
     主流程:
       - "选择结局或内容记录"
       - "比较公开稿/演员稿/调查稿/创作稿"
@@ -537,9 +473,6 @@
       - "所有路由"
     模块:
       - i18n
-    信息输入:
-      - docs/blueprint/05_i18n/01_locales.yaml
-      - docs/background/03_terminology/01_核心专名.csv
     主流程:
       - "打开语言选择器"
       - "选择交付语言"
@@ -563,10 +496,6 @@
       - "所有内容路由"
     模块:
       - i18n
-    信息输入:
-      - docs/blueprint/05_i18n/01_locales.yaml
-      - docs/content/03_localization/04_国家名方案.csv
-      - docs/content/03_localization/05_语言名方案.csv
     主流程:
       - "选择地区语域"
       - "预览自称、日期、短字段和字体回退"
@@ -590,9 +519,6 @@
       - /compare/:ref
     模块:
       - i18n
-    信息输入:
-      - docs/background/03_terminology/01_核心专名.csv
-      - docs/content/03_localization/03_语言槽位.csv
     主流程:
       - "选择记录与语言列"
       - "按 segment 对齐"
@@ -616,9 +542,6 @@
     模块:
       - troupe_information
       - join_us
-    信息输入:
-      - docs/background/02_crimson_troupe/01_organization/02_人物.csv
-      - docs/content/04_performance/02_剧团岗位推演.csv
     主流程:
       - "选择台前/文本/舞台/视觉/声音/巡演/收藏"
       - "完成一项短试题"
@@ -644,9 +567,6 @@
     模块:
       - join_us
       - i18n
-    信息输入:
-      - docs/blueprint/05_i18n/01_locales.yaml
-      - docs/background/03_terminology/01_核心专名.csv
     主流程:
       - "选择意象/技艺/地区语域"
       - "生成三个候选并看读音/依据"
@@ -670,8 +590,6 @@
       - "所有路由"
     模块:
       - core
-    信息输入:
-      []
     主流程:
       - "点击闭幕或启用稳定版"
       - "立即停止副作用"
@@ -695,8 +613,6 @@
       - "所有核心路由"
     模块:
       - core
-    信息输入:
-      []
     主流程:
       - "先呈现 SSR 文本与链接"
       - "建议轻量模式"
@@ -722,8 +638,6 @@
     模块:
       - core
       - i18n
-    信息输入:
-      []
     主流程:
       - "选择降低动效/静音/高对比/大字/无计时"
       - "筛选相应场次标签"
@@ -749,8 +663,6 @@
       - core
       - archive
       - i18n
-    信息输入:
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
     主流程:
       - "选择服务器/内容范围"
       - "预览将隐藏的层级"
@@ -774,8 +686,6 @@
       - "所有路由"
     模块:
       - core
-    信息输入:
-      []
     主流程:
       - "隔离失败模块"
       - "显示文本降级和故障范围"
@@ -801,10 +711,6 @@
       - repertoire_archive
       - ticket_basket
       - archive
-    信息输入:
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/04_活页剧目.csv
-      - docs/content/01_world/04_巡演地点候选.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/05_结局.csv
     主流程:
       - "查看本幕内容"
       - "选择巡演节点"
@@ -831,10 +737,6 @@
       - archive
       - red_velvet_studio
       - timeline_archive
-    信息输入:
-      - docs/background/02_crimson_troupe/05_red_velvet/03_红丝绒片场与剧务.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/02_探索情报与背景文件.csv
-      - docs/background/02_crimson_troupe/02_history/02_专题时间注释.csv
     主流程:
       - "选择片场工种或档案主题"
       - "完成镜头/文件排序"
@@ -859,9 +761,6 @@
       - /rest
     模块:
       - campaigns
-    信息输入:
-      - docs/background/02_crimson_troupe/04_collectibles/01_藏品.csv
-      - docs/background/02_crimson_troupe/03_phantom_and_crimson_solitaire/03_幻觉报告册.csv
     主流程:
       - "选择点名/调度/雾机/丝线/校音"
       - "查看规则与无计时选项"
