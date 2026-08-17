@@ -1,10 +1,14 @@
 flowchart LR
   Search[搜索结果/深链接] --> Home[首页·今夜]
+  Home --> Detail[今夜/近期演出详情]
   Home --> Nav{任务型主导航}
   Nav --> Calendar[演出日历]
+  Nav --> Repertoire[剧目]
+  Nav --> Troupe[剧团]
+  Nav --> Visit[巡演与到访]
   Calendar --> View{列表/日历}
-  View --> Filters[日期·城市·剧目·可访问形式·状态]
+  View --> Filters[剧目·城市·场次状态·可访问形式]
   Filters --> Results[结果数与场次卡]
-  Results --> Detail[演出详情]
+  Results --> Detail
   Results -->|无结果| Relax[放宽条件/清除筛选]
-  Home --> Stable[语言·剧透·稳定演出版·票篮]
+  Home --> Tools[搜索·稳定演出版]

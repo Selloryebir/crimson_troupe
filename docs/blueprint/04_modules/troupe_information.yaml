@@ -1,11 +1,10 @@
 id: troupe_information
-version: 1.0.0
+version: 1.1.0
 挂载点:
   - troupe.primary
   - home.after-hero
 路由:
   - /troupe
-  - /troupe/people/:slug
 依赖模块:
   []
 信息输入:
@@ -20,5 +19,6 @@ version: 1.0.0
 降级方案: "render available sections; mark missing sections as 档案整理中"
 验收条件:
   - "人物年代不被压成同一时期"
+  - "M0 在剧团页内展示部门和成员，不生成独立人物详情路由"
   - "稳定原文随时可见"
   - "移动端章节目录可键盘操作"
