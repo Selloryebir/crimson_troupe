@@ -1,13 +1,15 @@
 flowchart LR
-  Page[当前页面] --> Delivery[交付语言]
-  Delivery --> CN[简中]
-  Delivery --> EN[English]
-  Delivery --> JP[日本語]
-  Page --> Diegetic[人工白名单泰拉语域]
-  Diegetic --> Skin[短标签·日期·节目册皮肤]
-  Skin --> Page
-  Diegetic --> Currency[LMD + 显式映射币种]
+  Page[当前页面] --> Profile[地域展示配置]
+  Profile --> Entity[国家实体·世界内语言]
+  Profile --> Text[现实文本语言·资源]
+  Profile --> Route[沉浸式国家路径]
+  Profile --> Currency[LMD + 绑定币种]
+  Profile --> Skin[日期·节目册·局部装饰]
+  Entity --> Page
+  Text --> Page
+  Route --> Page
   Currency --> Page
-  Page --> Evidence[并排对照]
+  Skin --> Page
+  Page --> Evidence[证据/档案/编辑对照]
   Evidence --> Status[官方/工作译/推拟/待审]
   Status --> Page

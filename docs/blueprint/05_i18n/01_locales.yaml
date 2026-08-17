@@ -1,149 +1,224 @@
-版本: 5.0.0
-说明: "泰拉语域用于票面、专名和短句；不是官方完整语言包。"
-实施策略:
-  M0: "只验证 i18n 插件接入面"
-  首个可部署交付版本:
-    - zh-CN
-    - en
-    - ja
-  世界内语域: "由人工白名单逐项启用；下列候选项不构成交付承诺"
-交付语言:
-  - tag: zh-CN
-    自称: 简体中文
-    证据: 简中客户端
-  - tag: en
-    自称: English
-    证据: 国际服客户端
-  - tag: ja
-    自称: 日本語
-    证据: 日服客户端
-泰拉语域:
-  - tag: x-ak-aegir
-    名称: 阿戈尔语
-    自称: Ægirian
-    备选: Lingua Aegiriana
-    依据: 官方英文词形＋语言学扩展
-  - tag: x-ak-bolivar
-    名称: 玻利瓦尔语
-    自称: Bolivariano
-    备选: Iberiano bolivariano
-    依据: 语言学推拟·中
-  - tag: x-ak-columbia
-    名称: 哥伦比亚语
-    自称: Columbian
-    备选: Victorian (Columbian)
-    依据: 官方英文词形
-  - tag: x-ak-durin
-    名称: 杜林语
-    自称: Durinera
-    备选: Durish
-    依据: 语言学推拟·中
-  - tag: x-ak-gaul
-    名称: 高卢语
-    自称: Gaulois
-    备选: langue gauloise
-    依据: 语言学推拟·高
-  - tag: x-ak-higashi
-    名称: 东国语
-    自称: 極東語
-    备选: 東国語
-    依据: 官方日文衍生
-  - tag: x-ak-iberia-es
-    名称: 伊比利亚语（西语型）
-    自称: Iberiano
-    备选: idioma iberiano
-    依据: 语言学推拟·高
-  - tag: x-ak-iberia-pt
-    名称: 伊比利亚语（葡语型）
-    自称: Iberiano ocidental
-    备选: Iberiano (variante ocidental)
-    依据: 编辑方案
-  - tag: x-ak-kazdel
-    名称: 卡兹戴尔语
-    自称: Kazdelian
-    备选: קזדלית / كازدلية
-    依据: 官方英文＋语言学推拟·中
-  - tag: x-ak-kazimierz
-    名称: 卡西米尔语
-    自称: Kazimierski
-    备选: język kazimierski / kazimierszczyzna
-    依据: 语言学推拟·高
-  - tag: x-ak-kjerag
-    名称: 谢拉格语
-    自称: Kjeragisk
-    备选: Kjeragisch
-    依据: 语言学推拟·中
-  - tag: x-ak-laterano
-    名称: 拉特兰语
-    自称: Lateranensis
-    备选: Laterano / Laterana
-    依据: 语言学推拟·中
-  - tag: x-ak-leithanien
-    名称: 莱塔尼亚语
-    自称: Leithanisch
-    备选: Leithanische Sprache
-    依据: 语言学推拟·高
-  - tag: x-ak-lungmen
-    名称: 龙门话
-    自称: 龍門話
-    备选: 炎文（龍門話） / 龍門語
-    依据: 语言学推拟·高
-  - tag: x-ak-minos
-    名称: 米诺斯语
-    自称: Μινωικά
-    备选: η μινωική γλώσσα
-    依据: 语言学推拟·高
-  - tag: x-ak-nightzmora
-    名称: 梦魇语
-    自称: Найтзморан хэл
-    备选: Найтзморан
-    依据: 语言学推拟·中
-  - tag: x-ak-rim-billiton
-    名称: 雷姆必拓区域语体
-    自称: Victorian (Rim Billiton)
-    备选: Rim Victorian
-    依据: 编辑方案
-  - tag: x-ak-sami
-    名称: 萨米诸语言
-    自称: Sámegiella
-    备选: davvisámegiella
-    依据: 编辑方案＋现实自称参照
-  - tag: x-ak-sargon
-    名称: 萨尔贡诸语言
-    自称: لغات سارغون
-    备选: زبان‌های سارگون
-    语域候选:
-      - id: ar
-        标签: لغات سارغون
-      - id: fa
-        标签: زبان‌های سارگون
-    依据: 编辑方案；必须继续按地区下钻
-  - tag: x-ak-siesta
-    名称: 汐斯塔克里奥尔语
-    自称: Kreyòl Siesta
-    备选: Criollo siestano / Crioulo siestano
-    依据: 语言学推拟·中
-  - tag: x-ak-siracusa
-    名称: 叙拉古语
-    自称: Siracusano
-    备选: lingua siracusana
-    依据: 官方活动词形＋语言学推拟·高
-  - tag: x-ak-tara
-    名称: 塔拉语
-    自称: Tengae
-    依据: 世界内直接词形
-  - tag: x-ak-ursus
-    名称: 乌萨斯语
-    自称: Урсусский
-    备选: урсусский язык
-    依据: 语言学推拟·高
-  - tag: x-ak-victoria
-    名称: 维多利亚语
-    自称: Victorian
-    备选: Victorian English
-    依据: 官方英文词形
-  - tag: x-ak-yan
-    名称: 炎语
-    自称: 炎文
-    备选: 炎语 / 大炎官话
-    依据: 语言学推拟·中
+版本: 6.0.0
+说明: "地域展示配置将国家实体、现实文本语言、世界内语言身份、URL 和货币绑定为一个可切换单元。"
+
+默认配置: yan
+根路径跳转: /yan/
+
+显示文案来源:
+  官方专名: docs/background/03_terminology/01_核心专名.csv
+  工作译与候选: docs/content/03_localization/04_专名方案.csv
+
+实施阶段:
+  M0:
+    - yan
+  首个多语言交付:
+    - yan
+    - higashi
+    - victoria
+    - columbia
+  后续计划:
+    - siracusa
+    - minos
+    - ursus
+    - kazimierz
+    - leithanien
+    - laterano
+
+资源集:
+  zh-Hans:
+    名称: 简体中文
+  ja:
+    名称: 日本語
+  en:
+    名称: English
+    说明: "维多利亚与哥伦比亚共享基础英文资源，各自覆盖拼写、格式、术语和地域文案。"
+  it:
+    名称: Italiano
+  el:
+    名称: Ελληνικά
+  ru:
+    名称: Русский
+  pl:
+    名称: Polski
+  de:
+    名称: Deutsch
+  la:
+    名称: Latina
+    说明: "页面文本按教会拉丁语语体编辑；HTML 语言标签仍使用 la。"
+
+地域展示配置:
+  - id: yan
+    配置名称: 炎国
+    国家实体: 炎
+    世界内语言: 炎语
+    路径: /yan/
+    HTML语言: zh-Hans
+    资源集: zh-Hans
+    字体覆盖:
+      - han
+    货币:
+      名称: 炎国文
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: null
+    阶段: M0
+
+  - id: higashi
+    配置名称: 东国
+    国家实体: 东
+    世界内语言: 东国语
+    路径: /higashi/
+    HTML语言: ja
+    资源集: ja
+    字体覆盖:
+      - han
+      - kana
+    货币:
+      名称: 东国小判
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 首个多语言交付
+
+  - id: victoria
+    配置名称: 维多利亚
+    国家实体: 维多利亚
+    世界内语言: 维多利亚语
+    路径: /victoria/
+    HTML语言: en-GB
+    资源集: en
+    资源覆盖: en-GB
+    字体覆盖:
+      - latin
+    货币:
+      名称: 维多利亚磅
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 首个多语言交付
+
+  - id: columbia
+    配置名称: 哥伦比亚
+    国家实体: 哥伦比亚
+    世界内语言: 哥伦比亚语
+    路径: /columbia/
+    HTML语言: en-US
+    资源集: en
+    资源覆盖: en-US
+    字体覆盖:
+      - latin
+    货币:
+      名称: 哥元
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 首个多语言交付
+
+  - id: siracusa
+    配置名称: 叙拉古
+    国家实体: 叙拉古
+    世界内语言: 叙拉古语
+    路径: /siracusa/
+    HTML语言: it
+    资源集: it
+    字体覆盖:
+      - latin
+    货币:
+      名称: 弗洛林
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+  - id: minos
+    配置名称: 米诺斯
+    国家实体: 米诺斯
+    世界内语言: 米诺斯语
+    路径: /minos/
+    HTML语言: el
+    资源集: el
+    字体覆盖:
+      - greek
+    货币:
+      名称: 米诺斯斯塔特
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+  - id: ursus
+    配置名称: 乌萨斯
+    国家实体: 乌萨斯
+    世界内语言: 乌萨斯语
+    路径: /ursus/
+    HTML语言: ru
+    资源集: ru
+    字体覆盖:
+      - cyrillic
+    货币:
+      名称: 切尔文
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+  - id: kazimierz
+    配置名称: 卡西米尔
+    国家实体: 卡西米尔
+    世界内语言: 卡西米尔语
+    路径: /kazimierz/
+    HTML语言: pl
+    资源集: pl
+    字体覆盖:
+      - latin
+      - polish-diacritics
+    货币:
+      名称: 马克
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+  - id: leithanien
+    配置名称: 莱塔尼亚
+    国家实体: 莱塔尼亚
+    世界内语言: 莱塔尼亚语
+    路径: /leithanien/
+    HTML语言: de
+    资源集: de
+    字体覆盖:
+      - latin
+    货币:
+      名称: 杜卡特
+      显示代码: LED
+      审核状态: 演示占位·待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+  - id: laterano
+    配置名称: 拉特兰
+    国家实体: 拉特兰
+    世界内语言: 拉特兰语
+    路径: /laterano/
+    HTML语言: la
+    资源集: la
+    语言语体: 教会拉丁语
+    字体覆盖:
+      - latin
+    货币:
+      名称: 点券
+      显示代码: null
+      审核状态: 待人工审核
+    回退配置: yan
+    阶段: 后续计划
+
+运行规则:
+  - "路径、HTML 语言、世界内语言、国家实体和货币只通过本表关联，不根据名称推断。"
+  - "配置名称仅用于技术文档辨识；选择器和页面显示文案从 background 官方专名或 content 工作译读取，不在蓝图中维护第二份文案。"
+  - "HTML lang 只使用现实文本语言的有效 BCP 47 标签；地域配置 id 和路径不是语言标签。"
+  - "切换配置时必须原子更新路径、文本资源、格式规则、地域文案和币种，不能保留另一配置的局部状态。"
+  - "普通页面只显示当前配置中的专名；跨语言对照只出现在证据、档案或编辑预览中。"
+  - "缺译字段回退到炎国配置，公开页面低干扰标注‘中文原文’，开发预览另标‘待译’。"
+  - "币种显示代码为空时显示币种全名和‘代码待审’，不得生成缩写。"
+  - "汇率只接受人工硬编码值；缺失时使用 1:1 演示值并明确标注‘演示汇率/待人工审核’。"
+  - "只有本表列出的十个配置进入实施计划；其他语言研究项不生成路由、选择器或货币映射。"

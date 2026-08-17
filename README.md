@@ -11,7 +11,7 @@
 | `docs/background/` | 世界观事实、官方或可回溯专名、事实边界与公开来源索引 |
 | `docs/content/` | 基于事实的创作应用、工作译和内容本地化 |
 | `docs/blueprint/` | 网站架构、功能、模块、旅程、契约和技术设计 |
-| `docs/planning/` | 来源登记、审核事项、覆盖缺口和推进计划 |
+| `docs/planning/` | 来源登记、审核事项、覆盖缺口、预开发决策收集和推进计划 |
 | `scripts/`、`tests/` | 仓库规范校验脚本及其测试 |
 
 完整入口和阅读顺序见 [`docs/README.md`](docs/README.md)，组织、命名、格式与唯一来源规则见 [`docs/01_文档组织规范.md`](docs/01_文档组织规范.md)。
