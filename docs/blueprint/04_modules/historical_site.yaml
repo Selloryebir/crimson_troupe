@@ -17,7 +17,9 @@ version: 1.0.0
   - docs/content/05_site_editions/README.md
   - docs/content/02_crimson_troupe/01_专题内容应用.md
 本地状态:
-  - discoveredSnapshotDates
+  - historicalVisitActionCount
+  - historicalVisitDistortionLevel
+  - historicalVisitInteractionKeys
 产物:
   []
 降级方案: "关闭异常动效并以独立静态页面显示历史新闻、过去演出、人物状态、捕获日期和返回当前网站"
@@ -29,4 +31,15 @@ version: 1.0.0
   - "索引按 localeProfileId + siteEditionId 隔离，不读取表网站、其他地域配置、其他语言字段或 background"
   - "页脚版本戳只负责发现；直接 URL、刷新、书签和浏览器后退不设访问锁"
   - "捕获栏显示泰拉日期并提供返回当前网站"
-  - "降低动效或无 JavaScript 时仍可阅读全部历史正文和表里冲突"
+  - "初始就显示少量由里网站内容集明确编写的不可信信息或演出记录，不在运行时改写 background"
+  - "初始落地只建立基线，不计为探索；随后仅新页面或关键档案或内容项首次成功打开时计数"
+  - "每个 interactionKey 在本次访问内只计一次"
+  - "滚动、菜单开合、重复点击、失败重试、稳定模式和返回操作不计为有效探索"
+  - "每个历史快照的饱和阈值确定且固定；首个快照默认为 6，只允许人工在 5～8 范围内调整，达到后异常保持饱和"
+  - "异常进度只保存在当前页签的运行内存；不写入 localStorage、IndexedDB、Cookie、URL 或服务器"
+  - "离开当前历史快照路由域或切换 terraDate 即销毁进度；重新进入、刷新、直接 URL、新标签页或从表网站经浏览器前进或后退进入都从基线开始"
+  - "同一快照内部前进或后退保留进度；稳定演出版隐藏异常并暂停计数且不消耗 interactionKey，关闭后从同一进度继续"
+  - "渐进异常只是呈现叠加层，不改写内容记录、URL、搜索索引、SEO 或表网站状态"
+  - "historical_site 拥有本次访问进度；narrative_layer 只提供无状态的可复用呈现原语"
+  - "不保存已发现快照标记；用户依靠页脚入口、浏览器历史或书签重访"
+  - "降低动效或无 JavaScript 时仍可阅读全部预置历史正文和表里冲突；不要求渐进叠加层成立"
